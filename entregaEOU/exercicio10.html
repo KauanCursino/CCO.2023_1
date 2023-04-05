@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de alturat</title>
+</head>
+
+<body>
+    <h1>TESTE</h1>
+    <br><br><br>
+    <h3>Qual altura inicial?</h3>
+    <input id="iptAlturaInicial">
+    <br><br>
+    <h3>Qual a altura final?</h3>
+    <input id="iptAlturaFinal">
+    <br><br>
+    <button onclick="AP()">Veja a sua situação</button>
+    <h3>Qual o seu nome?</h3>
+    <input id="iptNome">
+    <br><br>
+    <h3>Qual a sua altura?</h3>
+    <input id="iptAltura">
+    <div id="divMsg"></div>
+</body>
+
+</html>
+<script>
+    function AP() {
+        var alturaInicial = iptAlturaInicial.value
+        var alturaFinal = iptAlturaFinal.value
+        if (alturaInicial >= 1 && alturaFinal > alturaInicial) {
+            if (iptAltura.value >= alturaInicial && iptAltura.value <= alturaFinal) {
+                divMsg.innerHTML = `o candidato ${iptNome.value} e com altura de ${iptAltura.value}m está apto para ser piloto`
+            } else {
+                divMsg.innerHTML = `O candidato ${iptNome.value} com altura de ${iptAltura.value} não está apto para ser piloto`
+            }
+        }
+        else {
+            alert(`Digito Inválido`)
+        }
+    }
+</script>

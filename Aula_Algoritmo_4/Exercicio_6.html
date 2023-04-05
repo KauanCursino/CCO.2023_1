@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 6</title>
+</head>
+<body>
+    <h1>Renda familiar</h1>
+    <br><br><br>
+    <h2>Qual a renda familia?</h2>
+    <input id="ipt_renda">
+    <br><br>
+    <h2>Qual o valor da prestação?</h2>
+    <input id="ipt_prestacao">
+    <br>
+    <button onclick="RF()">Calcule o prejuízo</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function RF(){
+        var valor = (Number (ipt_prestacao.value) / (Number (ipt_renda.value))) * 100
+        div_msg.innerHTML = `A prestação corresponde a ${valor}% da sua renda total`
+        if (valor > 30){div_msg.innerHTML += `<br> Vamos ter que complementr a renda familair`
+        }
+    
+    }
+</script>

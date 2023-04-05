@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperatura no momento</title>
+</head>
+<body>
+    <h1>TESTE</h1>
+    <h3>Qual a temperatura?</h3>
+    <input id="iptTemperatura">
+    <br><br>
+    <button onclick="VR()">Veja a sua situação</button>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    function VR(){
+        var temp = iptTemperatura.value
+        if (temp >= 21 && temp <= 24) {
+            divMsg.innerHTML = `Temperatura agradável`
+        } else if (temp > 24) {
+            divMsg.innerHTML = `Desagradável`
+        } else if (temp < 21) {
+            divMsg.innerHTML = `Aiiiii Europeu`
+        } 
+    }
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calcule seu desperdício de água</h1>
+    <br><br><br>
+    <h2>Quantos minutos a torneira 1 ficou aberta?</h2>
+    <input id="Torneira1">
+    <br>
+    <h2>Quanto tempo a torneira 2 ficou aberta</h2>
+    <input id="Torneira2">
+    <br>
+    <h2>Quanto tempo a torneira 3 ficou aberta?</h2>
+    <input id="Torneira3">
+    <br>
+    <button onclick="dsp()">Calcule!</button>
+</body>
+</html>
+<script>
+    function dsp(){
+        var Desperdicio = (Torneira1.value + Torneira2.value + Torneira3.value) * 15
+        alert('As três torneiras, juntas, gastaram ' + Desperdicio + ' Litros de água')
+    }
+</script>

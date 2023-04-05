@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 4</title>
+</head>
+<body>
+    <h1><b>Quato vai dar essa brincadeira aí</b></h1>
+    <h2> Qual o valor da pizza?</h2>
+    <input id="ipt_pizza">
+    <br><br>
+    <h2>Quantos amigos vão colar?</h2>
+    <input id="ipt_amigos">
+    <br>
+    <button onclick="RP()">Rola pizza?</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+        function RP(){
+            var pizza = (Number (ipt_pizza.value)) / (Number (ipt_amigos.value))
+            div_msg.innerHTML = `Cada amigo vai pagar ${pizza} reais`
+            if (pizza > 20) {
+                alert( `Fudeu, pizza cara demais, tamo sem cascalho`)
+            }
+        }
+</script> 

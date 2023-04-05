@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="verificar()">S2 PARES</button>
+    <div id="divMsg"></div>
+</body>
+
+</html>
+<script>
+    function verificar() {
+        var numero = 0;
+        while (numero <= 100) {
+            var pares = numero % 2
+            if (pares == 0) {
+                divMsg.innerHTML += `${numero}<br>`
+                
+            }
+            numero++;
+        }
+
+    }
+</script>

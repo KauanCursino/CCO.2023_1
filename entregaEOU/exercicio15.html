@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrara Driver</title>
+</head>
+
+<body>
+    <h1>Valor da Corrida</h1>
+    <br><br><br>
+    <h3>Qual o seu nome?</h3>
+    <input id="iptNome">
+    <br><br>
+    <h3>Qual a distância que será percorrida?</h3>
+    <input id="iptKm">
+    <br><br>
+    <h3>Qual a bandeira no momento?</h3>
+    <input id="iptBandeira">
+    <br><br>
+    <h3>Qual o horário da corrida?</h3>
+    <input id="iptHora">
+    <br><br>
+    <button onclick="CC()">Calcular Corrida</button>
+    <div id="divErro"></div>
+    <div id="divMsg"></div>
+
+</body>
+
+</html>
+<script>
+    function CC() {
+        var total = (Number(iptKm.value)) * 1.25
+        if (iptNome.value == 0 || iptKm.value < 0 || iptKm.value > 100 || iptBandeira.value < 1 || iptBandeira.value > 3 || iptHora.value < 0 || iptHora.value > 23) {
+
+            if (iptNome.value == 0) {
+                alert(`O campo de nome não pode estar vazio`)
+            }
+            if (iptKm.value < 0) {
+                alert(`Informe corretamente a distância`)
+            } else if (iptKm.value > 100) {
+                alert(`Viagens devem ser negociadas com a nossa Central`)
+            }
+            if (iptBandeira.value < 1 || iptBandeira.value > 3) {
+                alert(`A  Bandeira deve ser entre 1 e 3 somente`)
+            }
+            if (iptHora.value > 23 || iptHora.value < 0) {
+                alert(`Insira um horário válido`)
+            }
+            divErro.innerHTML += (`Favor corrigir o(s) dado(s) de entrada para seguirmos em frente <br>`)
+        }
+
+        if (iptBandeira.value == 1) {
+            if (iptHora >= 0 && iptHora <= 6) {
+                var total = total * 1.075
+            } else if (iptHora.value >= 7 && iptHora.value <= 12) {
+                var total = total * 1.10
+            } else {
+                var total = total * 1.125
+            }
+        }
+        if (iptBandeira.value == 2) {
+            if (iptHora.value >= 0 && iptHora.value <= 6) {
+                var total = total * 1.10
+            } else if (iptHora.value >= 7 && iptHora.value <= 12) {
+                var total = total * 1.15
+            } else {
+                var total = total * 1.20
+            }
+        }
+        if (iptBandeira.value == 3) {
+            if (iptHora.value >= 0 && iptHora.value <= 6) {
+                var total = total * 1.15
+            } else if (iptHora.value >= 7 && iptHora.value <= 12) {
+                var total = total * 1.30
+            } else {
+                var total = total * 1.45
+            }
+        }
+
+        var pix = total * 0.025
+        var totalpix = total - pix
+        var cartao = total * 0.035
+        var totalcartao = total + cartao
+
+        divMsg.innerHTML += `Olá ${iptNome.value}, sua corrida será de ${iptKm.value}KM, na bandeira ${iptBandeira.value} e custará ${total} reais se pagar em dinheiro <br> Se você efetuar o pagamento com pix o valor será de ${totalpix} <br> se efetuar o pagamento com cartão será de ${totalcartao}`
+    }
+</script>

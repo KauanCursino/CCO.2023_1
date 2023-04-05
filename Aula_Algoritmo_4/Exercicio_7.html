@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 7</title>
+</head>
+<body>
+    <h1>Cheque especial</h1>
+    <br><br><br>
+    <h2>Quanto você tem na conta?</h2>
+    <input id="ipt_saldo">
+    <br><br>
+    <h2>E quanto de débito?</h2>
+    <input id="ipt_debito">
+    <br>
+    <button onclick="NV()">Veja seu novo saldo</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function NV(){
+        var saldo = (Number (ipt_saldo.value)) - (Number (ipt_debito.value))
+        div_msg.innerHTML = `Seu novo saldo é de ${saldo} reais`
+    }
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 1</title>
+</head>
+<body>
+    <h1>Calcule a sua posentadoria</h1>
+    <br><br>
+    <h2>Aposentadoria Homem</h2>
+    <br>
+    <input id="APH">
+    <br>
+    <button onclick="AH()">Calcular</button>
+    <br>
+    <br><br>
+    <h2>Aposentadoria Mulher</h2>
+    <input id= "APM">
+    <br>
+    <button onclick="AM()">Calcular</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+        function AH(){
+            var homem = 70 - (APH.value) 
+            div_msg.innerHTML = ('Você se aposentará em ' + homem + ' anos')
+        }
+        function AM(){
+            var mulher = 60 - (APM.value)
+            div_msg.innerHTML = ('você se aposentará em ' + mulher + ' anos')
+        }
+    
+        
+    
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA MASTER</title>
+</head>
+<body>
+    <h1>Compare times da NBA</h1>
+    <br><br><br>
+    <h3>Nome do time 1</h3> <br>
+    <input id="firstTeam">
+    <h3>Quantos pontos ele fez?</h3>
+    <input id="iptFp">
+    <br><br>
+    <h3>Nome do time 2</h3>
+    <input id="secondTeam">
+    <h3>quantos pontos ele fez?</h3>
+    <input id="iptSp">
+    <br>
+    <button onclick="CT()">Compare!</button>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    function CT(){
+        var total = (Number(iptFp.value)) + (Number(iptSp.value))
+        var vencedor = 0
+        
+        if (iptFp.value + iptSp.value > 100) {
+            divMsg.innerHTML += "Esse jogo teve muitos pontos, digno de um jogo de alto nivel da NBA <br>"
+        }
+        
+        if (iptFp.value > iptSp.value) {
+            var vencedor = firstTeam.value
+            var diferenca = (Number(iptFp.value)) - (Number(iptSp.value))
+            var pontos = (Number(iptFp.value)) / total * 100
+            var cestas = iptFp.value / 2
+            var cestinhas = iptFp.value / 3
+            divMsg.innerHTML += `Total de pontos = ${total} <br>
+            Time 1 = ${iptFp.value} <br>
+            Time 2 = ${iptSp.value} <br> 
+            A vitória é do ${vencedor}, com vantagem de ${diferenca}, ou seja, com vantagem de ${pontos} % <br>
+            Com um total de ${iptFp.value} pontos, podendo ser ${cestas} de dois pontos e ${cestinhas} de três pontos `
+        }
+        if (iptSp.value > iptFp.value) {
+            alert()
+            var vencedor = secondTeam.value
+            var diferenca = (Number(iptSp.value)) - (Number(iptFp.value))
+            var pontos = (Number(iptSp.value)) / total * 100
+            var cestas = iptSp.value / 2
+            var cestinhas = iptSp.value / 3
+            divMsg.innerHTML += `Total de pontos = ${total} <br>
+                            Time 1 = ${iptFp.value} <br>
+                            Time 2 = ${iptSp.value} <br> 
+                            A vitória é do ${vencedor}, com vantagem de ${diferenca}, ou seja, com vantagem de ${pontos} % <br>
+                            Com um total de ${iptSp.value} pontos, podendo ser ${cestas} de dois pontos e ${cestinhas} de três pontos `
+        }
+if (cestinhas > 30) {
+    divMsg.innerHTML += `Esse time tem um verdadeiro cestinha`
+    
+}
+
+    }
+    
+</script>

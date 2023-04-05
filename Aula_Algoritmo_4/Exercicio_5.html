@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SUA CONTA DE LUZ</h1>
+    <br>
+    quantos kWh você utiliza por mês?: <input id="ipt_kWh">
+    <br>
+    <button onclick="CL()">Calcule sua conta de luz</button>
+<div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function CL(){
+        var conta = ipt_kWh.value * 0.85
+        div_msg.innerHTML = ("Sua conta seria de " + conta + " reais")
+        if (ipt_kWh.value < 100) {
+            var desconto = conta * 0.90
+            div_msg.innerHTML = (" O valor, com desconto, a pagar é " + desconto + " reais")
+        }
+    }
+</script>

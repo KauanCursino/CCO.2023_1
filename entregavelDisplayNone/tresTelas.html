@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>ECONOMIA</h1>
+    <div id="divInputs">
+        <h3>Qual o seu nome de usuário?</h3>
+        <input id="iptUsuario">
+        <br><br>
+        <h3>Qual o seu objetivo?</h3>
+        <input id="iptObj">
+        <br><br>
+        <h3>E o valor dele?</h3>
+        <input id="iptValor">
+        <br>
+        <button onclick="AVC()">Avançar</button>
+
+    </div>
+    <div id="divResult"></div>
+    <div id="divBanco" style="display: none;">
+        <button onclick="GDR()">Guadar 5 reais</button>
+        <button onclick="RTR()">Retirar 10 reais</button>
+        <div id="divSituacao"></div>
+        <button onclick="btnAVC()">Avançar mais</button>
+    </div>
+    <div id="divResumo" style="display: none;">
+    </div>
+    <div id="divReset" style="display: none;">
+        <button onclick="btnReset()">Calcule suas finaças e objetivos novamente!</button> 
+    </div>
+</body>
+
+</html>
+<script>
+    var possiblidade = 0;
+    var contar = 0;
+    var guardar = 0;
+    var retirar = 0;
+    function AVC() {
+        var nome = iptUsuario.value
+        var obj = iptObj.value
+        var objErro = obj.startsWith('Comprar') || obj.startsWith('Adquirir') || obj.startsWith('Arrecadar' || obj.startsWith('Importar'))
+        var valor = iptValor.value
+        var valorErroCem = valor > 100
+        var valorErroMil = valor < 1000
+        if (nome.length < 5 || objErro == false || valorErroCem == false || valorErroMil < 1000 == false) {
+            if (nome.length < 5) {
+                alert('O seu usuário deve ter no mínimo 5 caracteres')
+            }
+            if (objErro == false) {
+                alert('Informar corretamente o Objetivo')
+            }
+            if (valorErroCem == false) {
+                alert('Vamos lá... Você quer poupar ou não!!')
+            }
+            if (valorErroMil == false) {
+                alert('Calma.... esse valor é só quando você estiver estagiando')
+            }
+
+        } else {
+            divInputs.style.display = 'none'
+            divBanco.style.display = 'block'
+            divResult.innerHTML = `Olá Senhor(a) ${nome}, o seu saldo é de R$ ${contar}`
+        }
+    }
+    function GDR() {
+        var valor = iptValor.value
+        var nome = iptUsuario.value
+        contar += 5
+        guardar++
+        divResult.innerHTML = `Olá Senhor(a) ${nome}, o seu saldo é de R$ ${contar}`
+        if (contar >= 0) {
+            divSituacao.innerHTML = `Finanças OK! continue assim para atingir o objetivo`
+        }
+        if (contar >= 80) {
+            divSituacao.innerHTML = `MUITO BEM!!! você está próximo do objetivo`
+        }
+        if (contar < 0) {
+            divSituacao.innerHTML = `Finanças em perigo!`
+        }
+        if (contar <= -20) {
+            divSituacao.innerHTML = `${iptUsuario.value} quase no SERASA!`
+        }
+        if (contar > valor) {
+            divSituacao.innerHTML = `PARABENS, ${iptUsuario.value}!!! você atingiu a meta de R$ ${iptValor.value} e agora poderá ${iptObj.value}`
+        }
+
+    }
+    function RTR() {
+        var valor = iptValor.value
+        var nome = iptUsuario.value
+        contar -= 10
+        retirar++
+        divResult.innerHTML = `Olá Senhor(a) ${nome}, o seu saldo é de R$ ${contar}`
+        if (contar >= 0) {
+            divSituacao.innerHTML = `Finanças OK!  continue assim para atingir o objetivo`
+        }
+        if (contar >= 80) {
+            divSituacao.innerHTML = `MUITO BEM!!!  você está próximo do objetivo`
+        }
+        if (contar < 0) {
+            divSituacao.innerHTML = `Finanças em perigo!`
+        }
+        if (contar <= -20) {
+            divSituacao.innerHTML = `${iptUsuario.value} quase no SERASA!`
+        }
+        if (contar > valor) {
+            divSituacao.innerHTML = `PARABENS, ${iptUsuario.value}!!! você atingiu a meta de R$ ${iptValor.value} e agora poderá ${iptObj.value}`
+        }
+
+    }
+    function btnAVC() {
+        var possibilidade = contar + (retirar * 10)
+        divBanco.style.display = 'none'
+        divResumo.style.display = 'block'
+        divReset.style.display = 'block'
+        divResumo.innerHTML = `Nome: ${iptUsuario.value}<br>
+
+o    Objetivo: ${iptObj.value} <br>
+
+o    Valor Guardado: ${contar} <br>
+
+o    Quantidade de Depósitos: ${guardar}<br>
+
+o    Quantidade de Retiradas: ${retirar} <br>
+
+o    Se você não tivesse feito retiradas você teria hoje R$ ${possibilidade}`
+    }
+    function btnReset() {
+        var possiblidade = 0;
+        var contar = 0;
+        var guardar = 0;
+        var retirar = 0;
+
+        iptObj.value = ` `
+        iptUsuario.value = ` `
+        iptValor.value = ` `
+        divResult.style.display = 'none'
+        divResumo.style.display = 'none'
+        divInputs.style.display = 'block'
+        divReset.style.display = 'none'
+       
+    }
+</script>

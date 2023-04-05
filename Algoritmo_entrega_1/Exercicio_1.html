@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="Pare()">Pare!</button>
+    <br><br>
+    <button onclick="Pense()">Pense!</button>
+    <br><br>
+    <button onclick="Prossiga()">Prossiga!</button>
+    <br><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function Pare(){
+        div_msg.innerHTML += "Pare e aguarde <br>"
+    }
+    function Pense(){
+        div_msg.innerHTML += "Pense se contiua ou não <br>"
+    }
+    function Prossiga(){
+        div_msg.innerHTML += "Pensou? Então pode seguir seu caminho <br>"
+    }
+</script>

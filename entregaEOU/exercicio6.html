@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veja sua classe escolar</title>
+</head>
+<body>
+    <h1>AVALIAÇÃO</h1>
+    <br><br><br>
+    <h3>Qual tua nota mlk(a)?</h3>
+    <input id="iptNota">
+    <br><br>
+    <button onclick="AA()">Avaliar aluno</button>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    function AA(){
+        var nota = iptNota.value
+        if (nota < 6) {
+            divMsg.innerHTML = `PARABÉNS, foi reprovado seu animal`
+        } else if (nota > 8.5) {
+            divMsg.innerHTML = `Tu é pica demais, aprovado pra krl`
+        } else {
+            divMsg.innerHTML = `Aluno meia bomba, aprovado`
+        }
+    }
+</script>

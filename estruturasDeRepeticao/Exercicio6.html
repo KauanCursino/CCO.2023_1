@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>O último romântico</h1>
+    <br><br><br>
+    <h3>Qual o nome do seu xuxuzinho?</h3>
+    <input id="iptAmor">
+    <br>
+    <h3>O quanto você ama seu dengo?</h3>
+    <input id="iptTamanho">
+    <button onclick="amor()">SE DECLARE</button>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    var vezes = 0;
+    var numero = 0;
+    function amor() {
+        var nome = iptAmor.value;
+        var vezes = iptTamanho.value;
+        var numero = 0;
+        while (numero < vezes) {
+            divMsg.innerHTML += `${iptAmor.value}, seja minha momolada!<br>`
+            numero++;
+        }
+    }
+</script>

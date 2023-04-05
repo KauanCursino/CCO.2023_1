@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Arrecadação de ingressos</h1>
+    <br><br>
+    <h2>Quantos ingressos de estudante foram vendidos?</h2>
+    <br>
+    <input id="Estudante">
+    <br>
+    <h2>Quantos ingressos normais foram vendidos?</h2>
+    <input id="normais">
+    <br><br>
+    <h2>Qual o valor dos ingressos comuns?</h2>
+    <br>
+    <input id="valor">
+    <br>
+    <button onclick="arrecadacao()">Calcular</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function arrecadacao(){
+        var estudantil = valor.value / 2
+        var estudantes = Estudante.value * estudantil
+        var normal = valor.value * normais.value
+        var Arrecadacao = estudantes + normal
+        div_msg.innerHTML += ('para uma quantidade de ' + Estudante.value + ' de estudante e ' + normais.value + ' comuns, a arrecadação foi de ' + Arrecadacao + ' reais <br>')
+    }
+</script>

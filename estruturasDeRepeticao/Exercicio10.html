@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SUA IDADE</h1>
+    <br><br><br>
+    <h3>Qual a sua idade?</h3>
+    <input id="iptIdade" onkeyup="okuIdade()">
+    <br>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    var numero = 0;
+    function okuIdade(){
+        var idade = iptIdade.value
+        numero = 0
+        while (numero < idade ) {
+            if (idade <= 6) {
+                divMsg.innerHTML += `(${numero}) Primeira infância`  
+            } else if (idade < 10) {
+                divMsg.innerHTML += `(${numero})Segunda infância`
+            }
+        }
+    }
+</script>

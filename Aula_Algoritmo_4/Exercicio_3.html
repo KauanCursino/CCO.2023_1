@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+<body>
+    <h1>Alunos fora de ssérie</h1>
+    Insira a nota 1: <input id="ipt_nota"> <br>
+    insira a nota 2: <input id="ipt_nota2"><br>
+    insira a nota 3: <input id="ipt_nota3"><br>
+    <button onclick="FS()">Analisar desempenho</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function FS(){
+        div_msg.innerHTML = '';
+        var media = (Number (ipt_nota.value) + (Number (ipt_nota2.value) + (Number (ipt_nota3.value)))) / 3
+        if (media >= 9.4) {
+            div_msg.innerHTML += ('Parabéns você é um aluno fora de série')
+        }
+    }
+</script>

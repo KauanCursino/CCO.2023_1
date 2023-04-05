@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova</title>
+</head>
+
+<body>
+    <H1>Seu Salário</H1>
+    <h3>Qual o seu saláro?</h3>
+    <input id="iptSalario">
+    <br><br>
+    <h3>Qual o adicional mensal??</h3>
+    <br>
+    <input id="iptMensal">
+    <br><br>
+    <h3>Qual o seu bônus?</h3>
+    <br>n
+    <input id="iptBonus">
+    <br>
+    <button onclick="AR()">Analisar minha renda</button>
+    <div id="div_msg"></div>
+
+</body>
+
+</html>
+<script>
+    function AR() {
+        var bruto = (Number(iptSalario.value)) + (Number(iptMensal.value)) + (Number(iptBonus.value))
+        var ir = bruto * 0.875
+        var inss = bruto
+        var brutoir = 0
+        if (bruto >= 10000) {
+            var brutoir = bruto - ir
+        }
+        var descontado = bruto - brutoir
+        var inss = descontado * 0.10
+        var fgts = descontado * 0.08
+        var liqd = bruto - brutoir - inss - fgts
+        div_msg.innerHTML += `Seu salário de ${iptSalario.value} Reais, com adicional de ${iptMensal.value} reais e um bônus de ${iptBonus.value} reais, você tem: <br>
+        Bruto: ${bruto} reais <br>
+        IR: ${brutoir} reais<br>
+        INSS: ${inss} reais<br>
+        FGTS: ${fgts} reais<br>
+        Liquido ${liqd} reais<br>`
+        if (liqd > 2500) {
+            var poupar = liqd * 0.15
+            var ano = poupar * 12
+            div_msg.innerHTML += `Com uma renda de ${liqd} reais, é recomendado poupar ${poupar} reais para que em um ano tenha poupado${ano}`
+        }
+    }
+</script>

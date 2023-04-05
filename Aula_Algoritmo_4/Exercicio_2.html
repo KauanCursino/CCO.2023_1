@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+</head>
+<body>
+    <h1>Veja o quão perto das diabetes você está</h1>
+    <br><br><br>
+    <h2>Quantas latinhas de refri você bebe por dia?</h2>
+    <br>
+    <input id="ipt_refri">
+    <br><br>
+    <button onclick="QF()">Resultado de 1 ano</button>
+    <br><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function QF(){
+        var refri = (Number (ipt_refri.value)) * 365
+        div_msg.innerHTML = "você bebe " + refri + " latinhas por ano" + "<br>"
+        if (refri >= 500) {
+            div_msg.innerHTML += "Cuidado com as diabetes, cabaço"
+        }
+    }
+</script>

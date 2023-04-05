@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Filhos</h1>
+    <br><br><br>
+    <h2>Quantos filhos você tem?</h2>
+    <input id="ipt_filhos">
+    <br>
+    <button onclick="SF()">Analisar Familia</button>
+    <div id="familia"></div>
+</body>
+</html>
+<script>
+    function SF(){
+        if (ipt_filhos.value >= 1) {
+            div_msg.innerHTML += `Não tem TV`
+        }
+        if (ipt_filhos.value >= 2) {
+            div_msg.innerHTML += `Não tem internet`
+        }
+        if (ipt_filhos.value >=3) {
+            div_msg.innerHTML += `Não tem videogame`
+        }
+        if (ipt_filhos.value >= 4) {
+            div_msg.innerHTML += `Não tem internet `
+            
+        }
+    }
+</script>
