@@ -15,9 +15,10 @@
 <script>
     var contador = 1;
     function verificar(){
-        while (contador <= 7 ) {
-            divMsg.innerHTML += `${contador}. ${iptTexto.value} <br>`
-            contador++
+
+        for (let contador= 1; contador <= 7 ; contador++) {
+            divMsg.innerHTML += `${contador}. ${iptTexto.value} <br>`;
+            
         }
     } 
 

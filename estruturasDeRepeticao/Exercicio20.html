@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>POUPANÇA</h1>
+    <br><br><br>
+    <h3>Qual o valor atual da poupança?</h3>
+    <input id="iptAtual">
+    <br><br>
+    <h3>Quanto será guardado por mês?</h3>
+    <input id="iptMesada">
+    <br><br>
+    <h3>Por quantos meses?</h3>
+    <input id="iptMes">
+    <br><br>
+    <h3>Qual o porcentual dos juros?</h3>
+    <input id="iptJuros">
+    <br><br>
+    <button onclick="btnVp()">Vamos poupar</button>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    var num = 0;
+    function btnVp(){
+        var conta = (iptAtual.value + (iptAtual.value * iptJuros.value) / 100)
+        if (iptMesada.value < 0 || iptMes.value < 10 || iptJuros.value < 0.5 || iptJuros.value > 2) {
+            alert('ERRO: o valor guardado deve ser maior que zero e os meses poupados devem ser maiores do que 10!')
+        } 
+        while (num < iptMes.value) {
+            divMsg.innerHTML += `Mês ${num} - saldo inicial = R$${iptAtual.value} saldo final = R$${conta} <br>`
+            num++
+        }
+        
+    }
+</script>

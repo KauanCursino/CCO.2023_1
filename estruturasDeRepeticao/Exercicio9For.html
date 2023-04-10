@@ -16,7 +16,10 @@
     <h3>Qual o tamanho da sua tabuada?</h3>
     <input id="iptTamanho">
     <button onclick="btnCalcular()">Faça sua tabuada</button>
-    <div id="divPares"></div>
+    <div id="divPares"> 
+        <span id="pares"></span>
+        <span id="impares"></span>
+    </div>
 </body>
 
 </html>
@@ -25,17 +28,17 @@
     function btnCalcular() {
         var tabuada = iptTabuada.value
         var tamanho = iptTamanho.value
-        while (numero <= tamanho) {
-            var par = numero % 2
-            if (par == 0) {
-                divPares.innerHTML += `${tabuada} X ${numero} = ${tabuada * numero} <br>`
-                divPares.style.color = 'blue'
-            } else if (par != 0) {
-                divPares.innerHTML += `${tabuada} X ${numero} = ${tabuada * numero} <br>`
-                divPares.style.color = 'red'
-            } 
-            numero++
-        }
 
+        for (var numero = 0; numero <= tamanho; numero++) {
+            var conta = tabuada * numero
+            // var par = numero % 2
+            if (numero % 2 == 0) {                
+                divPares.innerHTML += ` <div style = "color: blue;"> ${tabuada} X ${numero} = ${conta} <br> </div>` 
+            } else{
+                divPares.innerHTML += ` <div style = "color: red;"> ${tabuada} X ${numero} = ${conta} <br> </div>` 
+            }
+            
+            
+        }
     }
 </script>

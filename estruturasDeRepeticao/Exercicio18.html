@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>TRI ou PENTA?</h1>
+    <button onclick="btnCalcular()">Curto 3 e 5!</button>
+    <div id="divNumeros"></div>
+</body>
+
+</html>
+<script>
+    function btnCalcular() {
+        var numero = 0;
+        while (numero < 100) {
+            numero++
+            if (numero % 5 == 0 && numero % 3 == 0) {
+                divNumeros.innerHTML += `É TRI! É PENTA!<br>`
+            } else if (numero % 3 == 0) {
+                divNumeros.innerHTML += `É TRI!<br>`
+            } else if (numero % 5 == 0) {
+                divNumeros.innerHTML += `É PENTA!<br>`
+            } else {
+                divNumeros.innerHTML += `${numero}<br>`
+            }
+
+        }
+    }
+</script>

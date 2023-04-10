@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Os números do Benedito</h1>
+    <br><br><br>
+    <div id="divPai">
+        <h3>Qual o primeiro número da sua conta?</h3>
+        <input id="iptPrimeiro">
+        <br><br>
+        <h3>E qual o último?</h3>
+        <input id="iptUltimo">
+        <button onclick="btnAnalise()">Calcular Primos</button>
+    </div>
+    <div id="divResult" style="display: none;">
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    var divisiveis = 0;
+    var primeiro = iptPrimeiro.value
+    var limite = iptUltimo.value
+    function btnAnalise() {
+        if (iptPrimeiro.value > 0 && iptUltimo.value > iptPrimeiro.value) {
+            divPai.style.display = 'none'
+            divResult.style.display = 'block'
+        }
+        else {
+            alert("ERRO: O primeiro valor deve ser maior que zero e o segundo valor deve ser maior que o primeiro")
+        }
+        while (primeiro <= limite) {
+            if (primeiro % 2 == 0) {
+                divResult.innerHTML = `O ${primeiro} é dívisivel por 2`
+                divisiveis++
+            }
+            else if (primeiro % 3 == 0) {
+                divResult.innerHTML += `O ${primeiro} é divisível por 3`
+                divisiveis++
+            }
+            else if (primeiro % 5 == 0) {
+                divResult.innerHTML += `O ${primeiro} é divísvel por  5`
+                divisiveis++
+            }
+            else if (primeiro % 7 == 0) {
+                divResult.innerHTML += `O ${primeiro} é divisível por 7`
+                divisiveis++
+            }
+            else if (primeiro % 13 == 0) {
+                divResult.innerHTML += `O ${primeiro} é divisível por 13`
+                divisiveis++
+            } 
+            else {
+                divResult.innerHTML += `O ${primeiro} não é divisível pelos principais números primos`
+            }
+            primeiro++
+        }
+        divResult.innerHTML += `O intervalo de ${iptPrimeiro.value} a ${iptUltimo.value} tem ${primeiro} números, sendo que ${divisiveis} são divisiveis por algum número`
+    }
+
+</script>

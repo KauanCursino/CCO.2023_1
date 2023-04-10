@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>DEPÓSITO</h1>
+    <br><br><br>
+    <h3>Quanto você depositou?</h3>
+    <input id="iptDeposito">
+    <br><br>
+    <h3>Quantos depósitos você vai fazer?</h3>
+    <input id="iptQtd">
+    <button onclick="btnCalculo()">Acompanhar Grana</button>
+    <div id="divGrana"></div>
+</body>
+
+</html>
+<script>
+    function btnCalculo() {
+        var num = 0;
+        var grana = iptDeposito.value
+        var limite = iptQtd.value
+        while (num < limite) {
+            var atual = num * grana
+            num++
+            divGrana.innerHTML += `Mês ${num}: R$${Number(grana) + Number(atual)}<br>`
+        }
+        if (num == limite) {
+            divGrana.innerHTML += `Total Guardado: ${Number(grana) *Number(num)}`
+            
+        }
+    }
+</script>
