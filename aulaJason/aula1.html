@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>INTRODUÇÃO EM JSON</h1>
+    <br><br><br>
+    <button onclick="btnMostrar()">Mostrar as infos</button>
+    <div id="divNome"></div>
+</body>
+</html>
+<script>
+    function btnMostrar(){
+        var pessoa = {
+            nome: 'Kauan',
+            nascimento: 2004,
+            caracteristica: 'lindo'
+        }
+        divNome.innerHTML += `O ${pessoa.nome}, que nasceu em ${pessoa.nascimento} é um ${pessoa.caracteristica} da porra`
+    }
+</script>   

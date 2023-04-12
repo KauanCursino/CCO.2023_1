@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>MANUEL TENSÃO AUTOMOBILISTICA</h1>
+    <br><br><br>
+    <h3>Quantas semanas deseja emitir?</h3>
+    <input id="iptSemana">
+    <br><br>
+    <h3>Quantos dias na semana você faz uma manutenção preventiva?</h3>
+    <input id="iptDias">
+    <br><br>
+    <h3>Quantas horas semanais você dedica a manutenção?</h3>
+    <input id="iptHoras">
+    <button onclick="btnEmitir()">Emitir</button>
+    <div id="divRotina"></div>
+    <div id="divResultado"></div>
+</body>
+
+</html>
+<script>
+    function btnEmitir() {
+        var horas = Number(iptHoras.value)
+        var dias = Number(iptDias.value)
+        var semana = Number(iptSemana.value)
+        var erro = false
+
+        if (semana < 4 || semana > 26 || dias < 1 || dias > 6 || horas < dias || horas > (dias * 8)) {
+            if (semana < 4 || semana > 26) {
+                alert('Escolha um número entre 4 e 26')
+                erro = true
+            }
+            if (dias < 1) {
+                alert('Informe corretamente a quantidade de dias da semana, deve ser no mínimo 1 vez')
+                erro = true
+            } else if (dias > 6) {
+                alert(' Opá, a semana tem no máximo 6 dias úteis')
+                erro = true
+            }
+            if (horas < dias || horas > (dias * 8)) {
+                alert('Quantidade de horas incompatível com a quantidade de dias semanais de manutenção')
+                erro = true
+            }
+        }
+        if (erro == false) {
+            for (i = 1; i <= semana; i++) {
+                divRotina.innerHTML += `<b> Semana ${i}<b><br>`
+                for (x = 1; x <= dias; x++) {
+                    divRotina.innerHTML += `Dia ${x} - ${horas / dias} - tarefas <br>`;
+
+                }
+            }
+            divResultado.innerHTML += `<b> Total de horas anuais para manutenção preventiva ${horas * 52}<br>
+                                       Quantidade de dias anuais para manutenção preventiva ${dias * 52} <br>
+                                       Quantidade esperada em mannutenção preventiva R$${((horas * 52) * 150).toFixed(2)}`
+        }
+    }
+</script>
