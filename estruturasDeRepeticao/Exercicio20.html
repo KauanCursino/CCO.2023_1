@@ -10,10 +10,10 @@
     <h1>POUPANÇA</h1>
     <br><br><br>
     <h3>Qual o valor atual da poupança?</h3>
-    <input id="iptAtual">
+    <input id="iptGuardado">
     <br><br>
-    <h3>Quanto será guardado por mês?</h3>
-    <input id="iptMesada">
+    <h3>Quanto será poupado por mês?</h3>
+    <input id="iptPoupado">
     <br><br>
     <h3>Por quantos meses?</h3>
     <input id="iptMes">
@@ -21,19 +21,22 @@
     <h3>Qual o porcentual dos juros?</h3>
     <input id="iptJuros">
     <br><br>
-    <button onclick="btnVp()">Vamos poupar</button>
+    <button onclick="btnPoupança()">Vamos poupar</button>
     <div id="divMsg"></div>
 </body>
 </html>
 <script>
-    var num = 0;
-    function btnVp(){
-        var conta = (iptAtual.value + (iptAtual.value * iptJuros.value) / 100)
+    var index = 1;
+    function btnPoupança(){
+        // rentabilidade no final é o rendimento / (pelos valor de depositótos + o valor guardado) * 100
+        var atual = iptAtual.value
+        var juros = ((Number(iptJuros.value)) * atual) / 100
+        var conta = (iptAtual.value + (atual * juros))
         if (iptMesada.value < 0 || iptMes.value < 10 || iptJuros.value < 0.5 || iptJuros.value > 2) {
             alert('ERRO: o valor guardado deve ser maior que zero e os meses poupados devem ser maiores do que 10!')
         } 
-        while (num < iptMes.value) {
-            divMsg.innerHTML += `Mês ${num} - saldo inicial = R$${iptAtual.value} saldo final = R$${conta} <br>`
+        while (num <= iptMes.value) {
+            divMsg.innerHTML += `Mês ${num} com um saldo inicial = R$${atual} e saldo final = R$${conta} <br>`
             num++
         }
         
