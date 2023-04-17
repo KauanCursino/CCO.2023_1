@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisibilidade</title>
+</head>
+
+<body>
+    <h1>DIVISIBILIDADE</h1>
+    <br><br><br>
+    <h3>Qual o limite inferior?</h3>
+    <input id="iptLimiteInferior">
+    <br><br>
+    <h3>Qual o limite superior?</h3>
+    <input id="iptLimiteSuperior">
+    <br><br>
+    <h3>Qual o primeiro número a ser testado a Divisibilidade?</h3>
+    <input id="iptPrimeiroTeste">
+    <br><br>
+    <h3>Qual o segundo número a ser testado a Divisibilidade?</h3>
+    <input id="iptSegundoTeste">
+    <br>
+    <button onclick="btnMostrar()">Mostrar</button>
+    <div id="divMsg"></div>
+    <div id="divAnalise"></div>
+</body>
+
+</html>
+<script>
+    var loop = 0;
+    var erro = false;
+    var contador = 0;
+    function btnMostrar() {
+        var limite = {
+            inferior: Number(iptLimiteInferior.value),
+            superior: Number(iptLimiteSuperior.value)
+        };
+        var teste = {
+            primeiro: Number(iptPrimeiroTeste.value),
+            segundo: Number(iptSegundoTeste.value)
+        }
+
+        if (limite.inferior < 20) {
+            alert('O limite inferior deve ser maior do que 20!')
+            erro = true
+        }
+        if (limite.superior < limite.inferior || limite.superior > 1000) {
+            alert('O limite Superior deve ser maior que o limite inferior e menor do que 1000! Verifique!')
+            erro = true
+        }
+        if (teste.primeiro < 3 || teste.primeiro > 20) {
+            alert('O primeiro teste deve estar entre 3 e 20! verifique!')
+            erro = true
+        }
+        if (teste.segundo < 3 || teste.segundo > 20 || teste.segundo == teste.primeiro) {
+            alert('O segundo teste tem que estar entre 3 e 20, além de ser diferente do primeiro teste! Verifique!')
+            erro = true
+        }
+        if (erro == false) {
+            var maior = 0
+            var menor = 0
+            for (var i = limite.inferior; i < limite.superior; i++) {
+                if (i % teste.primeiro == 0 || i % teste.segundo == 0) {
+                    if (i % teste.primeiro == 0 && i % teste.segundo == 0) {
+                        divMsg.innerHTML += `O número ${i} é divisível pelo primeiro e o segundo números<br>`
+                        contador++
+                        if (menor == 0) {
+                            menor = i;
+                        }
+                        if (maior < i) {
+                            maior = i
+                        }
+                        loop = contador + i
+                    } else if (i % teste.primeiro == 0) {
+                        divMsg.innerHTML += `O número ${i} é divisível pelo primeiro número<br>`
+                        contador++
+                        if (menor == 0) {
+                            menor = i;
+                        }
+                        if (maior < i) {
+                            maior = i
+                        }
+                        loop = contador + i
+                    } else if (i % teste.segundo == 0) {
+                        divMsg.innerHTML += `O número ${i} é divisível pelo segundo número<br>`
+                        contador++
+                        if (menor == 0) {
+                            menor = i;
+                        }
+                        if (maior < i) {
+                            maior = i
+                        }
+                        loop = contador + i
+                    }
+                } else {
+                    divMsg.innerHMTL = `Não foram encontrados números divisíveis!`
+                }
+
+            }
+        }
+        divAnalise.innerHTML += `Quantidade de números exibidos: ${contador}<br>
+
+                                 Média dos números exibidos: ${(loop / contador).toFixed(2)}<br>
+
+                                 Maior número exibido: ${maior}<br>
+
+                                 Menor número exibido: ${menor}<br>`
+    }
+</script>
