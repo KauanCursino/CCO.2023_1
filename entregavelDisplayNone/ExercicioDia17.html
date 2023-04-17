@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDA – AS MELHORES CAMISETAS DO BRASIL</title>
+</head>
+
+<body>
+    <div id="divOpcoes">
+        <h1>SDA – AS MELHORES CAMISETAS DO BRASIL</h1>
+        <br><br><br>
+        <h3>Quantidade de camisetas?</h3>
+        <input id="iptQtdCamisetas">
+        <br><br>
+        <h3>Qual o tamanho?</h3>
+        <input id="iptTamanho">
+        <br><br>
+        <h3>Vão ser camisetas brancas ou coloridas?</h3>
+        <input id="iptCor">
+        <br><br>
+        <h3>Qual a distância da entrega?</h3>
+        <input id="iptDistancia">
+        <br>
+        <button onclick="orcar()">Orçar</button>
+    </div>
+    <div id="divOrcamento" style="display: none;">
+        <button onclick="extrato()">Extrato Completo</button>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    var erro = false
+    function orcar() {
+        var camisetas = {
+            qtd: Number(iptQtdCamisetas.value),
+            tamanho: (iptTamanho.value),
+            cor: (iptCor.value),
+            distancia: Number(iptDistancia.value)
+        };
+        var valorUnitario = 0;
+        var mercadoria = valorUnitario * camisetas.qtd
+        if (camisetas.qtd < 100) {
+            alert('Vendemos somente atacado!')
+            erro = true
+        }
+        if (camisetas.distancia <= 0) {
+            alert('informar a distância de entrega')
+            erro = true
+        }
+        if (camisetas.cor == 'Brancas') {
+            if (camisetas.tamanho == 'Pequeno') {
+                valorUnitario = 15
+                mercadoria = valorUnitario * camisetas.qtd
+            }
+            if (camisetas.tamanho == 'Grande') {
+                valorUnitario = 16
+                mercadoria = valorUnitario * camisetas.qtd
+            }
+        } else if (camisetas.cor == 'Coloridas') {
+            if (camisetas.tamanho == 'Pequeno') {
+                valorUnitario = 17
+                mercadoria = valorUnitario * camisetas.qtd
+            }
+            if (camisetas.tamanho == 'Grande') {
+                valorUnitario = 18
+                mercadoria = valorUnitario * camisetas.qtd
+            }
+        }
+        if (erro == false) {
+            divOpcoes.style.display = 'none'
+            divOrcamento.style.display = 'block'
+            divOrcamento.innerHTML += `ORÇAMENTO DE VENDAS:<br>
+            Quantidade solicitada: ${camisetas.qtd}<br>
+            Produto Selecionado: ${camisetas.cor},<br>
+            Tamanho solicitado: ${camisetas.tamanho}<br>
+            O valor total dessas mercadorias será de R$${mercadoria}<br>`
+        }
+
+        if (camisetas.distancia > 67) {
+            divOrcamento.innerHTML += `Para essa distância será cobrado um adicional de R$${(mercadoria * 0.07).toFixed(2)} para entrega`
+        }
+    }
+    function extrato() {
+        var valorInicial = 0
+        var camisetas = {
+            qtd: Number(iptQtdCamisetas.value),
+            tamanho: (iptTamanho.value),
+            cor: (iptCor.value),
+            distancia: Number(iptDistancia.value)
+        };
+        if (camisetas.cor == 'Brancas') {
+            if (camisetas.tamanho == 'Pequeno') {
+                valorUnitario = 15
+                mercadoria = valorUnitario * camisetas.qtd
+            }
+            if (camisetas.tamanho == 'Grande') {
+                valorUnitario = 16
+                mercadoria = valorUnitario * camisetas.qtd
+            }
+        } else if (camisetas.cor == 'Coloridas') {
+            if (camisetas.tamanho == 'Pequeno') {
+                valorUnitario = 17
+                mercadoria = valorUnitario * camisetas.qtd
+            }
+            if (camisetas.tamanho == 'Grande') {
+                valorUnitario = 18
+                mercadoria = valorUnitario * camisetas.qtd
+            }
+        }
+
+        for (var i = 1; i < camisetas.qtd; i++) {
+            if (valorInicial == 0) {
+                valorInicial = valorUnitario
+            } else {
+                valorInicial += valorUnitario
+            }
+            divOrcamento.innerHTML += `<br>${i}ª camiseta ${camisetas.cor} de tamanho ${camisetas.tamanho}, vendida por ${valorUnitario}, totalizando ${valorInicial}.<br>`
+        }
+    }
+</script>
