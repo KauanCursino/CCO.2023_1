@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Naruto</title>
+</head>
+
+<body>
+    <h3>Quantidade de pontos de energia?</h3>
+    <input id="iptEnergia">
+    <br><br>
+    <h3>Quantidade de clones desejada?</h3>
+    <input id="iptQtdClones">
+    <h3>Quantidade de clones por linha?</h3>
+    <input id="iptClonesPorLinha">
+    <br>
+    <button onclick="clonar()">Criar Clones</button>
+    <div id="divImg">
+
+
+    </div>
+</body>
+
+</html>
+<script>
+    function clonar() {
+        var energia = Number(iptEnergia.value);
+        var clones = Number(iptQtdClones.value);
+        var limiteClones = Number(iptClonesPorLinha.value);
+
+        if (energia < 20 || energia > 5000 || clones < 0 || clones > 250 || limiteClones <= 0) {
+            alert('ERRO NA ENTRADA DE DADOS – Energia tem que ser entre 20 e 5.000. Quantidade de Clones tem que ser entre 0 e 250. Quantidade de Clones por linha tem que ser maior que 0')
+        } else {
+            if (energia >= (clones * 20)) {
+                var contador = 0;
+                var contadorLinha = 0;
+                while (contador < clones){
+                    while (contadorLinha < limiteClones && contador < clones) {
+                        contadorLinha++
+                        contador++
+                        divImg.innerHTML += '<img src="naruto.png" style="height: 100px"/>';                      
+                    }
+                    divImg.innerHTML += "<br>"
+                    contadorLinha = 0;
+                }
+            } else {
+                alert('EERO - energia insuficiente para criar os clones desejados')
+            }
+        }
+    }
+
+</script>
