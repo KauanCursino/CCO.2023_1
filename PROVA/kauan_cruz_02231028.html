@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Naruto</title>
+</head>
+
+<body>
+    <h3>Quantidade de pontos de energia?</h3>
+    <input id="iptEnergia">
+    <br><br>
+    <h3>Quantidade de clones desejada?</h3>
+    <input id="iptQtdClones">
+    <h3>Quantidade de clones por linha?</h3>
+    <input id="iptClonesPorLinha">
+    <br>
+    <button onclick="clonar()">Criar Clones</button>
+    <div id="divImg">
+
+
+    </div>
+</body>
+
+</html>
+<script>
+
+    var erro = false;
+    function clonar() {
+        var energia = Number(iptEnergia.value);
+        var clones = Number(iptQtdClones.value);
+        var clonesPorLinha = Number(iptClonesPorLinha.value);
+        if (energia < 20 || energia > 2000 || clones < 0 || clones > 250 || clonesPorLinha <= 0) {
+            alert('ERRO NA ENTRADA DE DADOS – Energia tem que ser entre 20 e 5.000. Quantidade de Clones tem que ser entre 0 e 250. Quantidade de Clones por linha tem que ser maior que 0');
+            erro = true;
+        } else if (energia < (clones * 20)) {
+            alert('Você não tem energia suficiente')
+            erro = true;
+        }
+        if (erro == false) {
+            for (var i = 1; i <= clones; i++) {
+                divImg.innerHTML += ` <img src="naruto.png" alt="fotoNaruto" style="height: 100px;">`                
+                for (var n = clonesPorLinha; n = i; n++) {
+                    divImg.innerHTML += `<br>`
+                }
+            }
+            divImg.innerHTML += `<b> ANÁLISE DA GERAÇÃO DE CLONES</b> <br> Energia Inicial:${energia}<br> Qtde Clones: ${clones}<br> sobra de energia: ${energia - (clones * 20)}`
+            if (clones > 50 || ((energia - (clones * 20)) / energia) * 100 >= 20) {
+                divImg.innerHTML += `<br> PROVAVELMENTE VOCE VAI GANHAR`
+            } else if (clones <= 50 && clones > 20 || ((energia - (clones * 20)) / energia) * 100 >= 10) {
+                divImg.innerHTML += `<br>A LUTA VAI SER MUITO BOA`
+            } else {
+                divImg.innerHTML += `<br>TORÇA PARA O ADVERSÁRIO SER FRAQUINHO`
+            }
+        }
+    }
+</script>

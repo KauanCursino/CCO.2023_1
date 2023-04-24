@@ -73,7 +73,7 @@
                         if (maior < i) {
                             maior = i
                         }
-                        loop = contador + i
+                        loop = contador += i
                     } else if (i % teste.primeiro == 0) {
                         divMsg.innerHTML += `O número ${i} é divisível pelo primeiro número<br>`
                         contador++
@@ -83,7 +83,7 @@
                         if (maior < i) {
                             maior = i
                         }
-                        loop = contador + i
+                        loop = contador+= i
                     } else if (i % teste.segundo == 0) {
                         divMsg.innerHTML += `O número ${i} é divisível pelo segundo número<br>`
                         contador++
@@ -93,7 +93,7 @@
                         if (maior < i) {
                             maior = i
                         }
-                        loop = contador + i
+                        loop = contador += i
                     }
                 } else {
                     divMsg.innerHMTL = `Não foram encontrados números divisíveis!`
