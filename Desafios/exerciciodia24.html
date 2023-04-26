@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docinhos Gourmet do JP</title>
+</head>
+
+<body>
+    <h1>DOCERIA DORIVACL</h1>
+    <br><br><br>
+    <h3>Quantos Brigadeiros vão ser vendidos</h3>
+    <input id="iptQtdBrigadeiro">
+    <br><br>
+    <h3>Quantos Macarons vão ser vendidos</h3>
+    <input id="iptQtdMacarons">
+    <br><br>
+    <h3>Quantos cupcakes vão ser vendidos</h3>
+    <input id="iptQtdCupcakes">
+    <br><br>
+    <h3>Quantos Cheesecake vão ser vendidos</h3>
+    <input id="iptQtdCheesecake">
+    <br><br><br>
+    <h3>Qual o preço do brigadeiro?</h3>
+    <input id="iptPrecoBrigadeiro">
+    <br><br>
+    <h3>Qual o preço do Macaron?</h3>
+    <input id="iptPrecoMacaron">
+    <br><br>
+    <h3>Qual o preço do cupcake?</h3>
+    <input id="iptPrecoCupcake">
+    <br><br>
+    <h3>Qual o preço do cheesecake</h3>
+    <input id="iptPrecoCheesecake">
+    <button onclick="verificar()">Verificar Vendas</button>
+    <div id="divMsg">
+
+    </div>
+</body>
+
+</html>
+<script>
+    var erro = false
+    function verificar() {
+        var brigadeiro = {
+            vendas: Number(iptQtdBrigadeiro.value),
+            preco: Number(iptPrecoBrigadeiro.value)
+        }
+        var macaron = {
+            vendas: Number(iptQtdMacarons.value),
+            preco: Number(iptPrecoMacaron.value)
+        }
+        var cupcake = {
+            vendas: Number(iptQtdCupcakes.value),
+            preco: Number(iptPrecoCupcake.value)
+        }
+        var cheesecake = {
+            vendas: Number(iptQtdCheesecake.value),
+            preco: Number(iptPrecoCheesecake.value)
+        }
+        var vendasTotais = brigadeiro.vendas + macaron.vendas + cupcake.vendas + cheesecake.vendas
+        if (brigadeiro.vendas < 0 || brigadeiro.vendas == ' ' || brigadeiro.preco < 0 || brigadeiro.preco == ' ' || macaron.vendas < 0 || macaron.vendas == ' ' || macaron.preco < 0 || macaron.preco == ' ' || cupcake.vendas < 0 || cupcake.vendas == ' ' || cupcake.preco < 0 || cupcake.preco == ' ' || cheesecake.vendas < 0 || cupcake.vendas == ' ' || cheesecake.preco < 0 || cupcake.preco == ' ') {
+            alert('Os dados não podem ser vazios e nem negativos! verifique!!')
+            erro = true
+        } else if (erro == false) {
+
+            for (var i = 0; i < vendasTotais; i++) {
+                divMsg.innerHTML += `${i} - <img src="https://www.plural.jor.br/wp-content/uploads/2022/02/macaron-receita-1024x751.jpg" - R$${macaron.preco}`
+                divMsg.innerHTML += `${i} - <img src="https://cdn.panelinha.com.br/receita/958014000000-Brigadeiro.jpg" - R$${brigadeiro.preco}`
+                divMsg.innerHTML += `${i} - <img src="https://chefinhanatural.com.br/wp-content/uploads/2021/01/cupcakes-de-chocolate-17.jpg" - R$${cupcake.preco}`
+                divMsg.innerHTML += `${i} - <img src="https://www.estadao.com.br/resizer/wDQovvHWGCl0wHCKlD_gkWNfnXQ=/1200x900/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/estadao/QKV242GUAVM65JYXK42WWBPPKI.jpg" - R$${cheesecake.preco}`
+            }
+
+
+
+
+        }
+    }
+</script>
