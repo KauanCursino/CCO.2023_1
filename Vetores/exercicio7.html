@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SEUS FILMES FAVORITOS</h1>
+    <br><br><br>
+    <h3>Quais os seus filmes favoritos?</h3>
+    <input id="iptFilmes">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    var filmes = []
+    function cadastrar(){
+        filmes.push(iptFilmes.value)
+        iptFilmes.value = ''
+        divMsg.innerHTML += `${filmes[filmes.length-1]}<br>`
+    }
+</script>

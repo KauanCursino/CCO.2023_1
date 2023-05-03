@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SUAS LINHAS DE BUSÃO</h1>
+    <br><br><br>
+    <h3>Quais as linhas de ônibus que você usa?</h3>
+    <input id="iptBusao">
+    <button onclick="gravar()">Gravar Busão</button>
+    <br>
+    <input id="iptPesquisa">
+    <button onclick="pesquisar()">Pesquisar</button>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    var busao = []
+    function gravar(){
+        busao.push(iptBusao.value)
+        iptBusao.value = ''
+    }
+    function pesquisar(){
+        if (iptPesquisa.value == busao) {
+            divMsg.innerHTML = `Você já pegou essa linha`
+        } else(
+            divMsg.innerHTML = `Você nunca pegou essa linha`
+        )
+    }
+</script>
