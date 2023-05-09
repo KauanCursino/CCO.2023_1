@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+
+    }
+</style>
+
+<body>
+    <div id="telaInicial">
+        <h1>MANUTENÇÃO DE NOTAS</h1>
+        <h3>RA</h3>
+        <input id="iptRa">
+        <h3> NOTA:</h3>
+        <input id="iptNota">
+        <br>
+        <button onclick="incluir()">INCLUIR</button>
+        <button onclick="excluir()">EXCLUIR</button>
+        <br>
+        <button onclick="alterar()">ALTERAR</button>
+        <input id="iptNotaAlterada">
+        <br>
+        <button onclick="ajustarNotas()">Ajustar Notas</button>
+        <button onclick="elimitarBuradosConsulta()">Eliminar Buracos/Consulta</button>
+        <br>
+    </div>
+    <div id="divAjusteDeNotas" style="display: none;">
+        <h1>AJUSTE DE NOTAS</h1>
+        <h3>RA:</h3>
+        De: <input id="iptInicioConsultaPorRaAjuste"> Até: <input id="iptLimiteConsultaPorRaAjuste">
+        <br><br><br>
+        <button onclick="bonus()">Bônus</button>
+        Pontos: <input id="iptPontosBonus" class="inputsAjuste"> OU %: <input id="iptPorcentagemBonus"
+            class="inputsAjuste">
+        <br>
+        <h3>OU</h3>
+        <br>
+        <button onclick="reducao()">REDUÇÃO</button>
+        Pontos: <input id="iptPontosBonus" class="inputsAjuste"> OU %: <input id="iptPorcentagemBonus"
+            class="inputsAjuste">
+        <br>
+        <h3>Lista Do Cadastro</h3>
+    </div>
+    <div id="divConsulta" style="display: none;">
+        <h1>CONSULTA DE NOTAS</h1>
+        <button onclick="consultaPorRa()">Por Ra</button>
+        De: <input id="iptInicioConsultaPorRa"> Até: <input id="iptLimiteConsultaPorRa">
+        <br>
+        <button onclick="consultaPorNota()">Por Nota</button>
+        De: <input id="iptInicioConsultaPorNota"> Até: <input id="iptLimiteContultaPorNota">
+
+        <div id="divCadastrosSelecionados">
+            <h3>Cadastros Selecionados</h3>
+        </div>
+        <div id="divResumoFinal">
+            <h3>Resumo Final</h3>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    var erro = false
+    var vtRa = []
+    var vtNota = []
+    var vtNovoVetorRa = []
+    var vtNovoVetorNota = []
+    function incluir() {
+        erro = ''
+        if (iptNota.value < 0 || iptNota.value > 10 || iptNota.value == '') {
+            alert('A nota deve ser maior que zero e menor que dez! Verifique!')
+            erro = true
+        }
+        if (iptRa.value < 2000 || iptRa.value > 3000) {
+            alert('O RA deve estra entre 2000 e 3000! Verifique!')
+            erro = true
+        }
+        for (var index = 0; index < vtRa.length; index++) {
+            if (iptRa.value === vtRa[index]) {
+                alert('Esse RA já existe!')
+                erro = true
+            }
+        }
+        if (erro == false) {
+            vtRa.push(iptRa.value);
+            vtNota.push(iptNota.value);
+            iptRa.value = '';
+            iptNota.value = '';
+            telaInicial.innerHTML += `RA:${vtRa[vtRa.length - 1]} NOTA: ${vtNota[vtNota.length - 1]} na ocorrência ${index + 1}<br>`
+        }
+    }
+    function excluir() {
+        for (var index = 0; index < vtRa.length; index++) {
+            if (iptRa.value === vtRa[index] && iptNota.value === vtNota[index]) {
+                delete vtRa[index]
+                delete vtNota[index]
+            }
+            telaInicial.innerHTML += `RA:${vtRa[index]} NOTA: ${vtNota[index]} na ocorrência ${index + 1}<br>`
+
+        }
+    }
+    function alterar() {
+        for (var index = 0; index < vtRa.length; index++) {
+
+            if (iptRa.value === vtRa[index] && iptNota.value === vtNota[index]) {
+                vtNota[index] = iptNotaAlterada.value
+                iptNota.value = ''
+                iptRa.value = ''
+                iptNotaAlterada.value = ''
+            }
+            telaInicial.innerHTML += `RA:${vtRa[index]} NOTA: ${vtNota[index]} na ocorrência ${index + 1}<br>`
+        }
+    }
+    function ajustarNotas() {
+        telaInicial.style.display = 'none'
+        divAjusteDeNotas.style.display = 'block'
+    }
+    function elimitarBuradosConsulta() {
+        for (var index = 0; index < vtRa.length; index++) {
+            if (vtRa[index] != undefined) {
+                vtNovoVetorNota.push(vtNota[index])
+                vtNovoVetorRa.push(vtRa[index])
+            }
+        }
+        telaInicial.style.display = 'none'
+        divConsulta.style.display = 'block'
+    }
+    function consultaPorRa() {
+        var notaTotal = 0
+        var contador = 0
+        var mediaIntervalo = 0
+        var mediaVetor = 0
+        var menorNotaDoIntervalo = 11
+        var maiorNotaDoIntervalo = 0
+        var menorNotaDoVetor = 11
+        var maiorNotaDoVetor = 0
+        for (var index = 0; index < vtNovoVetorRa.length; index++) {
+            if (vtNovoVetorRa[index] >= iptInicioConsultaPorRa.value && vtNovoVetorRa[index] <= iptLimiteConsultaPorRa.value) {
+                divCadastrosSelecionados.innerHTML += `${index + 1}º RA ${vtNovoVetorRa[index]} - Nota ${vtNovoVetorNota[index]}<br>`
+                if (vtNovoVetorNota[index] < menorNotaDoIntervalo) {
+                    menorNotaDoIntervalo = vtNovoVetorNota[index]
+                    contador++
+                    notaTotal += vtNovoVetorRa[index] 
+                }
+                if (vtNovoVetorNota[index] > maiorNotaDoIntervalo) {
+                    maiorNotaDoIntervalo = vtNovoVetorNota[index]
+                    contador++
+                }
+                contador++
+                mediaIntervalo =  notaTotal / contador
+
+            }
+            if (vtNovoVetorNota[index] < menorNotaDoVetor) {
+                menorNotaDoVetor = vtNovoVetorNota[index]
+
+            }
+            if (vtNovoVetorNota[index] >= maiorNotaDoVetor) {
+                maiorNotaDoVetor = vtNovoVetorNota[index]
+
+            }
+            mediaVetor = notaTotal / vtNovoVetorNota.length
+        }
+        divResumoFinal.innerHTML = `Menor nota do vetor ${menorNotaDoVetor}<br>
+                                    Maior nota do vetor ${maiorNotaDoVetor}<br>
+                                    Menor nota do intervalo ${menorNotaDoIntervalo}<br>
+                                    Maior nota do intervalo ${maiorNotaDoIntervalo}<br>
+                                    Média das notas do vetor ${mediaVetor}<br>
+                                    Média das notas do intervalo ${mediaIntervalo}`
+    }
+    function bonus() {
+        for (var index = 0; index < vtNovoVetorRa.length; index++) {
+            if (vtNovoVetorRa[index] >= iptInicioConsultaPorRa.value && vtNovoVetorRa[index] <= iptLimiteConsultaPorRa.value) {
+                vtNovoVetorNota[index] = vtNovoVetorNota + Number(iptPontosBonus.value)
+            }
+
+        }
+
+    }
+</script>
