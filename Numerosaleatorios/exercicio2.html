@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Os 4 gigantes da atualidade</h1>
+    <button onclick="sortear()">Sortear</button>
+    <div id="divMsg"></div>
+    
+</body>
+</html>
+<script>
+    var incio = 1
+    var limite = 4
+    var time = 0
+    function sortear(){
+        var sorteador = ((Math.random()*3)+1).toFixed()
+        if (sorteador == 1) {
+            time = '<img src="Ecaguasanta.png" style="height: 120px;"><br>'
+        }
+        if (sorteador == 2) {
+            time = '<img src="SampaioCorrêaFC.png" style="height: 120px;"><br>'
+        }
+        if (sorteador == 3) {
+            time = '<img src="1200px-EscudoCriciumaEC.svg.png" style="height: 120px;"><br>'
+        }
+        if (sorteador == 4) {
+            time = '<img src="Guarani_FC_(E)_-_SP.svg.png" style="height: 120px;"><br>'
+        }
+        divMsg.innerHTML += `${time}`
+    }
+</script>

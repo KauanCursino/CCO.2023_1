@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="divMsg">
+        <h3>Qual o seu número da sorte?</h3>
+        <input id="iptSorte">
+        <button onclick="valendo()">Valendo!</button>
+    </div>
+</body>
+</html>
+<script>
+    var sorteador = 0
+    function valendo(){
+        for (var index = 0; sorteador != iptSorte.value; index++) {
+            sorteador = ((Math.random()*100)+0).toFixed()
+        }
+        divMsg.innerHTML += `<br>Foram necessárias ${index} tentativas para o computador acertar o seu número`
+    }
+</script>

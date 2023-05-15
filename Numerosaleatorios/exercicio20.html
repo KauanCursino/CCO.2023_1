@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="divMsg">
+        <h3>Quantos números você quer sortar?</h3>
+        <input id="limiteSorteio">
+        <button onclick="sortear()">Sortear Números</button>
+    </div>
+</body>
+
+</html>
+<script>
+    var menorNumeroDoVetor = 101
+    var maiorNumeroDoVetor = 0
+    var numerosSorteados = []
+    var sorteador = 0
+    var contador = 0
+    var total = 0
+    function sortear() {
+        for (var index = 0; index < limiteSorteio.value; index++) {
+            sorteador = ((Math.random() * 100) + 0).toFixed()
+            numerosSorteados.push(sorteador)
+            if (numerosSorteados[index] < menorNumeroDoVetor) {
+                menorNumeroDoVetor = numerosSorteados[index]
+    
+            }
+            if (numerosSorteados[index] >= maiorNumeroDoVetor) {
+                maiorNumeroDoVetor = numerosSorteados[index]
+    
+            }
+            total += numerosSorteados[index]
+        }
+        var media =( total / numerosSorteados.length).toFixed() 
+        divMsg.innerHTML += `<br>O maior Número sorteado foi: ${maiorNumeroDoVetor}
+                             <br>O menor número sorteado foi: ${menorNumeroDoVetor}
+                             <br>A média dos números sorteados foi: ${total}`
+    }
+</script>

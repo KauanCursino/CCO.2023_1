@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="divBotaoNota">
+        <button onclick="sortearNota()">Sortear Nota</button>
+    </div>
+    <div id="divBotaoFreq">
+        <button onclick="sortearFreq()">Sortear Frequência</button>
+    </div>
+    <button onclick="aprovado()">Aprovado?</button>
+    
+</body>
+</html>
+<script>
+    var nota = 0
+    var freq = 0
+    function sortearNota(){
+        nota = ((Math.random()*7)+3).toFixed(1)
+        divBotaoNota.innerHTML += `<br>Nota do aluno: ${nota}`
+    }
+    function sortearFreq(){
+        freq = ((Math.random()*50)+50).toFixed(1)
+        divBotaoFreq.innerHTML += `<br>Frequência do aluno: ${freq}`
+    }
+    function aprovado(){
+        if (nota > 5 && freq >= 75) {
+        alert ('aprovado')
+    } else{
+        alert ('reprovado')
+    }
+    
+    }
+</script>
