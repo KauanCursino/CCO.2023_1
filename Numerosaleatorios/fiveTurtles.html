@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>PROVA FIVE TURTLES</h1>
+    <br><br><br>
+    <h3>Qual nome dos cinco participantes?</h3>
+    <input id="iptNomes" placeholder="Insira um nome de cada vez!">
+    <button onclick="inserir()">Inserir nome</button>
+    <br><br>
+    <h3>Qual a distância da corrida?</h3>
+    <input id="iptDistancia">
+    <br>
+    <button onclick="largada()">Dar a Largada!</button>
+    <div id="divMsg"></div>
+</body>
+
+</html>
+<script>
+    var menorTempo = 100
+    var corredorComMenorTempo = 0
+    var contaDosTempos = 0
+    var vtNomes = []
+    var vtTempos = [0, 0, 0, 0, 0]
+    function inserir() {
+        vtNomes.push(iptNomes.value)
+        iptNomes.value = ''
+    }
+    function largada() {
+        for (var i = iptDistancia.value; i > 0; i--) {
+            divMsg.innerHTML += `<br>Quilômetro ${i}`
+            for (var index = 0; index <vtTempos.length ; index++) {
+                contaDosTempos = Number((Math.random() * 2 + 4).toFixed(1))
+                vtTempos[index]+= contaDosTempos
+                divMsg.innerHTML += `<br>${vtNomes[index]}: ${(vtTempos[index]).toFixed(1)} `    
+            }
+            for (var y = 0; y < vtTempos.length; y++) {
+               if (menorTempo > vtTempos[y]) {
+                menorTempo = vtTempos[y]
+                corredorComMenorTempo = vtTempos.indexOf(menorTempo)
+               }
+                
+            }
+            if (i != 1) {
+                alert(`O menor tempo no KM ${i} foi do ${vtNomes[corredorComMenorTempo]} com um tempo de: ${(menorTempo).toFixed(1)}`)
+            }
+            menorTempo = 1000
+        }
+    }
+</script>
