@@ -35,7 +35,7 @@
     }
     function largada() {
         for (var i = iptDistancia.value; i > 0; i--) {
-            divMsg.innerHTML += `<br>Quilômetro ${i}`
+            divMsg.innerHTML += `<br>Quilômetro ${iptDistancia.value - i+1}`
             for (var index = 0; index <vtTempos.length ; index++) {
                 contaDosTempos = Number((Math.random() * 2 + 4).toFixed(1))
                 vtTempos[index]+= contaDosTempos
