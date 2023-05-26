@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetor Ex19</title>
+</head>
+
+<body>
+    <div id="tela_manut">
+        <h1>Manutenção de Notas</h1>
+        R.A: <input id="ipt_ra" autofocus>
+        Nota: <input id="ipt_nota"> <br><br>
+        <button onclick="incluir()">Incluir</button>
+        <button onclick="excluir()">Excluir</button> <br><br>
+        <button onclick="alterar()">Alterar</button>
+        Nota: <input id="ipt_nota_nova"> <br><br>
+        <button onclick="ajustar()">Ajustar Notas</button><br><br>
+        <button onclick="consultar()">Eliminar buracos/consultar</button><br><br>
+        <div id="div_msg"></div>
+    </div>
+
+    <div id="tela_ajustar" style="display: none;">
+        <h1>Tela de Ajuste de Notas</h1>
+        R.A. de: <input id="ipt_ra_de">
+        até <input id="ipt_ra_ate"> <br><br>
+        <button onclick="bonus()">Bônus</button>
+        Pontos: <input id="ipt_bonus">
+        ou %: <input id="ipt_perc_bonus"> <br>
+        OU <br>
+        <button onclick="reduzir()">Redução</button>
+        Pontos: <input id="ipt_reduzir">
+        ou %: <input id="ipt_perc_reduzir"> <br><br>
+        <button onclick="voltar()">Voltar</button> <br><br>
+        <div id="div_ajustar_msg"></div>
+    </div>
+
+    <div id="tela_consultar" style="display: none;">
+        <h1>Tela de Consulta</h1>
+        <button onclick="ver_ra()">Por R.A.</button>
+        de: <input id="ipt_ver_ra_de">
+        até <input id="ipt_ver_ra_ate"> <br><br>
+        <button onclick="ver_nota()">Por Nota</button>
+        de: <input id="ipt_ver_nota_de">
+        até <input id="ipt_ver_nota_ate"> <br><br>
+        <div id="div_consultar_msg"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    var ax_ra = 0;
+    var ax_nota = 0;
+    var ax_erro = false;
+    var vt_nota = [];
+    var vt_ra = [];
+
+
+    function incluir() {
+        ax_erro = false;
+        validar();
+        if (ax_erro == false) {
+            if (vt_ra.indexOf(ax_ra) == -1) {
+                vt_nota.push(ax_nota);
+                vt_ra.push(ax_ra)
+                mostrar_vetor();
+            } else {
+                alert("O R.A. informado já foi cadastrado!!!");
+            }
+        }
+    }
+
+
+    function excluir() {
+        var ax_ind = 0
+        ax_erro = false;
+        validar();
+        if (ax_erro == false) {
+            ax_ind = vt_ra.indexOf(ax_ra)
+            if (ax_ind != -1) {
+                if (vt_nota[ax_ind] == ax_nota) {
+                    delete vt_nota[ax_ind];
+                    delete vt_ra[ax_ind];
+                    alert(ax_ind + 1 + "ª ocorrencia excluida com sucesso")
+                    mostrar_vetor();
+                } else {
+                    alert("A nota cadastrada para esse R.A. está divergente " + vt_nota[ax_ind])
+                }
+
+            } else {
+                alert("O R.A. informado não foi cadastrado!!!");
+            }
+        }
+    }
+
+
+    function alterar() {
+        var ax_ind = 0
+        var ax_nota_nova = Number(ipt_nota_nova.value);
+
+        ax_erro = false;
+        validar();
+        if (ax_erro == false) {
+            if (ipt_nota_nova.value.length == 0 || isNaN(ax_nota_nova) ||
+                ax_nota_nova < 0 || ax_nota_nova > 10) {
+                alert('A nova Nota informada para alteração tem que estar entre 0 e 10')
+            } else {
+                for (var ind = 0; ind < vt_ra.length; ind++) {
+                    ;
+                    if (vt_ra[ind] == ax_ra && vt_nota[ind] == ax_nota) {
+                        vt_nota[ind] = ax_nota_nova;
+                        alert(ind + 1 + "ª ocorrencia alterada com sucesso")
+                        mostrar_vetor();
+                        break;
+                    }
+                }
+                if (ind >= vt_ra.length) {
+                    alert("O R.A. e Nota informados não foram encontrados para alteração!!!");
+                }
+            }
+        }
+    }
+
+
+    function validar() {
+        ax_ra = Number(ipt_ra.value);
+        ax_nota = Number(ipt_nota.value);
+        if (isNaN(ax_ra) || ax_ra < 2000 || ax_ra > 3000) {
+            alert("O R.A. informado deve estar entre 2000 e 3000");
+            ax_erro = true;
+        }
+        if (ipt_nota.value.length == 0 || isNaN(ax_nota) || ax_nota < 0 || ax_nota > 10) {
+            alert("A Nota informada tem que estar entre 0 e 10")
+            ax_erro = true;
+        }
+    }
+
+
+    function mostrar_vetor() {
+        ipt_nota.value = '';
+        ipt_ra.value = '';
+        div_msg.innerHTML = "<b>Cadastramentos Efetuados</b><br>"
+        for (var index = vt_ra.length - 1; index >= 0; index--) {
+            div_msg.innerHTML += `${index + 1}º - R.A. ${vt_ra[index]} - Nota: ${vt_nota[index]} <br>`
+        }
+    }
+
+
+    var ax_ra_de = 0;
+    var ax_ra_ate = 0;
+    var i_ajuste = 0
+
+    function ajustar() {
+        if (vt_ra.length == 0) {
+            alert('Cadastro de notas vazio, não há o que ajustar...')
+        } else {
+            tela_manut.style.display = 'none';
+            tela_ajustar.style.display = 'block';
+        }
+    }
+
+    function bonus() {
+        ax_erro = false;
+        var ax_bonus = Number(ipt_bonus.value);
+        var ax_perc_bonus = Number(ipt_perc_bonus.value);
+        var tot_bonus = 0;
+
+        validar_intervalo();
+        if (ax_erro == false) {
+            if (isNaN(ax_bonus)) {
+                alert('Pontos do Bonus tem que ser numérico');
+                ax_erro = true;
+            }
+            if (isNaN(ax_perc_bonus)) {
+                alert('O percentual do Bonus tem que ser numérico');
+                ax_erro = true;
+            }
+            if (ax_bonus == 0 && ax_perc_bonus == 0) {
+                alert('Informe o Pontos ou % para o bonus, uma das duas informações');
+                ax_erro = true;
+            }
+            if (ax_bonus != 0 && ax_perc_bonus != 0) {
+                alert('Informar somente o Pontos ou % para o bonus');
+                ax_erro = true;
+            }
+            if (ax_erro == false) {
+                for (i_ajuste = 0; i_ajuste < vt_ra.length; i_ajuste++) {
+                    if (vt_ra[i_ajuste] >= ax_ra_de && vt_ra[i_ajuste] <= ax_ra_ate) {
+                        tot_bonus++;
+                        if (ax_bonus != 0) {
+                            vt_nota[i_ajuste] = vt_nota[i_ajuste] + ax_bonus;
+                        } else {
+                            vt_nota[i_ajuste] = (vt_nota[i_ajuste] * ax_perc_bonus / 100) + vt_nota[i_ajuste]
+                        }
+                        if (vt_nota[i_ajuste] > 10) {
+                            vt_nota[i_ajuste] = 10
+                        }
+                    }
+                }
+                if (tot_bonus == 0) {
+                    alert('Não foram encontrados registros no intervalo informado')
+                } else {
+                    alert('Total de registros selecionados = ' + tot_bonus)
+                    mostrar_vetor_ajuste();
+                }
+
+            }
+
+        }
+    }
+
+    function reduzir() {
+        ax_erro = false;
+        var ax_reduzir = Number(ipt_reduzir.value);
+        var ax_perc_reduzir = Number(ipt_perc_reduzir.value);
+        var tot_reduc = 0;
+
+        validar_intervalo();
+        if (ax_erro == false) {
+            if (isNaN(ax_reduzir)) {
+                alert('Pontos de Redução tem que ser numérico');
+                ax_erro = true;
+            }
+            if (isNaN(ax_perc_reduzir)) {
+                alert('O percentual de Redução tem que ser numérico');
+                ax_erro = true;
+            }
+            if (ax_reduzir == 0 && ax_perc_reduzir == 0) {
+                alert('Informe o Pontos ou % para de Redução, uma das duas informações');
+                ax_erro = true;
+            }
+            if (ax_reduzir != 0 && ax_perc_reduzir != 0) {
+                alert('Informar somente o Pontos ou % para de Redução');
+                ax_erro = true;
+            }
+            if (ax_erro == false) {
+                for (i_ajuste = 0; i_ajuste < vt_ra.length; i_ajuste++) {
+                    if (vt_ra[i_ajuste] >= ax_ra_de && vt_ra[i_ajuste] <= ax_ra_ate) {
+                        tot_reduc++;
+                        if (ax_reduzir != 0) {
+                            vt_nota[i_ajuste] = vt_nota[i_ajuste] - ax_reduzir;
+                        } else {
+                            vt_nota[i_ajuste] = vt_nota[i_ajuste] - (vt_nota[i_ajuste] * ax_perc_reduzir / 100);
+                        }
+                        if (vt_nota[i_ajuste] < 0) {
+                            vt_nota[i_ajuste] = 0
+                        }
+                    }
+                }
+                if (tot_reduc == 0) {
+                    alert('Não foram encontrados registros no intervalo informado')
+                } else {
+                    alert('Total de registros selecionados = ' + tot_reduc);
+                    mostrar_vetor_ajuste();
+                }
+
+            }
+
+        }
+    }
+
+    function voltar() {
+        tela_manut.style.display = 'block';
+        tela_ajustar.style.display = 'none';
+    }
+
+    function validar_intervalo() {
+        ax_ra_de = Number(ipt_ra_de.value);
+        ax_ra_ate = Number(ipt_ra_ate.value);
+
+        if (isNaN(ax_ra_de) || ax_ra_de < 2000 || ax_ra_de > 3000) {
+            alert('O R.A. do início do intervalo tem que estar entre 2000 e 3000');
+            ax_erro = true;
+        }
+        if (isNaN(ax_ra_ate) || ax_ra_ate < 2000 || ax_ra_ate > 3000) {
+            alert('O R.A. do fim do intervalo tem que estar entre 2000 e 3000');
+            ax_erro = true;
+        }
+        if (ax_ra_de > ax_ra_ate) {
+            alert('O inicio do intervalo tem que ser menor ou igual ao término')
+            ax_erro = true
+        }
+    }
+
+    function mostrar_vetor_ajuste() {
+        div_ajustar_msg.innerHTML = "<b>Lista do Cadastro</b><br>"
+        for (var index = vt_ra.length - 1; index >= 0; index--) {
+            div_ajustar_msg.innerHTML += `${index + 1}º - R.A. ${vt_ra[index]} - Nota: ${vt_nota[index]} <br>`
+        }
+    }
+
+
+    var vt_nota_limpo = [];
+    var vt_ra_limpo = [];
+    var ax_ver_nota_de = 0;
+    var ax_ver_nota_ate = 0;
+    var i_ver = 0
+
+    function consultar() {
+        if (vt_ra.length == 0) {
+            alert('Cadastro de notas vazio, não há o que consultar...')
+        } else {
+            tela_manut.style.display = 'none';
+            tela_consultar.style.display = 'block';
+            for (var index = 0; index < vt_ra.length; index++) {
+                if (vt_ra[index] != undefined) {
+                    vt_nota_limpo.push(vt_nota[index]);
+                    vt_ra_limpo.push(vt_ra[index])
+                }
+            }
+        }
+    }
+    function ver_ra() {
+        var ax_ver_ra_de = Number(ipt_ver_ra_de.value);
+        var ax_ver_ra_ate = Number(ipt_ver_ra_ate.value);
+        var ax_maior = 0;
+        var ax_menor = 99;
+        var tot_select = 0;
+        var sum_notas = 0;
+        var ax_maior_geral = 0;
+        var ax_menor_geral = 99;
+        var sum_notas_geral = 0;
+        var tot_nota_8 = 0;
+        var tot_nota_4 = 0;
+
+        ax_erro = false;
+        if (isNaN(ax_ver_ra_de) || ax_ver_ra_de < 2000 || ax_ver_ra_de > 3000) {
+            alert('O R.A. do início do intervalo tem que estar entre 2000 e 3000');
+            ax_erro = true;
+        }
+        if (isNaN(ax_ver_ra_ate) || ax_ver_ra_ate < 2000 || ax_ver_ra_ate > 3000) {
+            alert('O R.A. do fim do intervalo tem que estar entre 2000 e 3000');
+            ax_erro = true;
+        }
+        if (ax_ver_ra_de > ax_ver_ra_ate) {
+            alert('O inicio do intervalo tem que ser menor ou igual ao término');
+            ax_erro = true;
+        }
+
+        if (ax_erro == false) {
+            div_consultar_msg.innerHTML = '<b>Cadastros Selecionados</b><br>'
+            for (var ind = 0; ind < vt_ra_limpo.length; ind++) {
+                if (vt_ra_limpo[ind] >= ax_ver_ra_de && vt_ra_limpo[ind] <= ax_ver_ra_ate) {
+                    div_consultar_msg.innerHTML += `${ind + 1}º - R.A. ${vt_ra_limpo[ind]} - Nota: ${vt_nota_limpo[ind]}<br>`;
+                    tot_select++;
+                    sum_notas += vt_nota_limpo[ind]
+                    if (vt_nota_limpo[ind] > ax_maior) {
+                        ax_maior = vt_nota_limpo[ind];
+                    }
+                    if (vt_nota_limpo[ind] < ax_menor) {
+                        ax_menor = vt_nota_limpo[ind];
+                    }
+                }
+
+                sum_notas_geral += vt_nota_limpo[ind]
+                if (vt_nota_limpo[ind] > ax_maior_geral) {
+                    ax_maior_geral = vt_nota_limpo[ind];
+                }
+                if (vt_nota_limpo[ind] < ax_menor_geral) {
+                    ax_menor_geral = vt_nota_limpo[ind];
+                }
+                if (vt_nota_limpo[ind] > 8) {
+                    tot_nota_8++;
+                }
+                if (vt_nota_limpo[ind] < 4) {
+                    tot_nota_4++;
+                }
+            }
+            if (tot_select == 0) {
+                alert('Nenhum registro atendeu o critério de seleção')
+            } else {
+                div_consultar_msg.innerHTML += `<br><br><b><u>Resumo Final</u></b><br>
+                    <b>Total de ocorrências listadas:</b> ${tot_select}<br>
+                    <b>Maior nota do intervalo:</b> ${ax_maior}<br>
+                    <b>Menor nota do intervalo:</b> ${ax_menor}<br>
+                    <b>Média das notas do intervalo:</b> ${sum_notas / tot_select}<br><br>`;
+            }
+
+            if (vt_nota_limpo.length == 0) {
+                alert('Sem registros após a eliminação dos buracos')
+            } else {
+                div_consultar_msg.innerHTML += `
+                    <b>Total de ocorrências no vetor:</b> ${vt_nota_limpo.length}<br>
+                    <b>Maior nota do intervalo:</b> ${ax_maior_geral}<br>
+                    <b>Menor nota do intervalo:</b> ${ax_menor_geral}<br>
+                    <b>Média das notas do intervalo:</b> ${sum_notas_geral / vt_nota_limpo.length}<br>
+                    <b>Total de alunos com nota acima de 8,0 no vetor:</b> ${tot_nota_8}<br>
+                    <b>Total de alunos com nota abaixo de 4,0 no vetor:</b> ${tot_nota_4}<br>`;
+            }
+        }
+
+    }
+    function ver_nota() {
+        var ax_ver_nota_de = Number(ipt_ver_nota_de.value);
+        var ax_ver_nota_ate = Number(ipt_ver_nota_ate.value);
+        var ax_maior = 0;
+        var ax_menor = 99;
+        var tot_select = 0;
+        var sum_notas = 0;
+        var ax_maior_geral = 0;
+        var ax_menor_geral = 99;
+        var sum_notas_geral = 0;
+        var tot_nota_8 = 0;
+        var tot_nota_4 = 0;
+
+        ax_erro = false;
+        if (isNaN(ax_ver_nota_de) || ax_ver_nota_de < 0 || ax_ver_nota_de > 10) {
+            alert('A nota de início do intervalo tem que estar entre 0 e 10');
+            ax_erro = true;
+        }
+        if (isNaN(ax_ver_nota_ate) || ax_ver_nota_ate < 0 || ax_ver_nota_ate > 10) {
+            alert('A Nota do fim do intervalo tem que estar entre 0 e 10');
+            ax_erro = true;
+        }
+        if (ax_ver_nota_de > ax_ver_nota_ate) {
+            alert('O inicio do intervalo tem que ser menor ou igual ao término');
+            ax_erro = true;
+        }
+
+        if (ax_erro == false) {
+            div_consultar_msg.innerHTML = '<b>Cadastros Selecionados</b><br>'
+            for (var ind = 0; ind < vt_nota_limpo.length; ind++) {
+                if (vt_nota_limpo[ind] >= ax_ver_nota_de && vt_nota_limpo[ind] <= ax_ver_nota_ate) {
+                    div_consultar_msg.innerHTML += `${ind + 1}º - R.A. ${vt_ra_limpo[ind]} - Nota: ${vt_nota_limpo[ind]}<br>`;
+                    tot_select++;
+                    sum_notas += vt_nota_limpo[ind]
+                    if (vt_nota_limpo[ind] > ax_maior) {
+                        ax_maior = vt_nota_limpo[ind];
+                    }
+                    if (vt_nota_limpo[ind] < ax_menor) {
+                        ax_menor = vt_nota_limpo[ind];
+                    }
+                }
+
+                sum_notas_geral += vt_nota_limpo[ind]
+                if (vt_nota_limpo[ind] > ax_maior_geral) {
+                    ax_maior_geral = vt_nota_limpo[ind];
+                }
+                if (vt_nota_limpo[ind] < ax_menor_geral) {
+                    ax_menor_geral = vt_nota_limpo[ind];
+                }
+                if (vt_nota_limpo[ind] > 8) {
+                    tot_nota_8++;
+                }
+                if (vt_nota_limpo[ind] < 4) {
+                    tot_nota_4++;
+                }
+            }
+            if (tot_select == 0) {
+                alert('Nenhum registro atendeu o critério de seleção')
+            } else {
+                div_consultar_msg.innerHTML += `<br><br><b><u>Resumo Final</u></b><br>
+                    <b>Total de ocorrências listadas:</b> ${tot_select}<br>
+                    <b>Maior nota do intervalo:</b> ${ax_maior}<br>
+                    <b>Menor nota do intervalo:</b> ${ax_menor}<br>
+                    <b>Média das notas do intervalo:</b> ${sum_notas / tot_select}<br><br>`;
+            }
+
+            if (vt_nota_limpo.length == 0) {
+                alert('Sem registros após a eliminação dos buracos')
+            } else {
+                div_consultar_msg.innerHTML += `
+                    <b>Total de ocorrências no vetor:</b> ${vt_nota_limpo.length}<br>
+                    <b>Maior nota do intervalo:</b> ${ax_maior_geral}<br>
+                    <b>Menor nota do intervalo:</b> ${ax_menor_geral}<br>
+                    <b>Média das notas do intervalo:</b> ${sum_notas_geral / vt_nota_limpo.length}<br>
+                    <b>Total de alunos com nota acima de 8,0 no vetor:</b> ${tot_nota_8}<br>
+                    <b>Total de alunos com nota abaixo de 4,0 no vetor:</b> ${tot_nota_4}<br>`;
+            }
+        }
+
+    }
+</script>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="seteMeio">
+        <button onclick="JogarSeteMeio()"> Jogar SETE e MEIO</button>
+    </div>
+    <div id="partidaSeteMeio" style="display: none;">
+        <button id="pedirOutra" onclick="PedirMaisUma()"> Pedir Outra Carta</button>
+        <button id="passarVez" onclick="PassarVez()">Passar a Vez</button>
+        <div id="divInfos"></div>
+    </div>
+    <div id="divBanca" style="margin-top: 60px;">
+
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    var jsonCartas = {
+        naipeCarta: ['Ouro', 'Paus', 'Copas', 'Espada'],
+        valorCarta: ['Ás', '2', '3', '4', '5', '6', '7', 'Valete', 'Rainha', 'Rei']
+    }
+    var vetorCartasSorteadas = [];
+    var sorteioNaipe = 0;
+    var sorteioValor = 0;
+
+    var nomeCarta = '';
+    var naipe = '';
+    var valor = 0;
+    var valorBanca = 0;
+    var estorou = false;
+    var passouVez = false;
+
+    function JogarSeteMeio() {
+        seteMeio.style.display = 'none';
+        partidaSeteMeio.style.display = 'block';
+        divInfos.innerHTML = `Jogador:<br>`
+        SortearCarta();
+    }
+
+    function PedirMaisUma() {
+        if (!estorou) {
+            divInfos.innerHTML += 'Quero Mais uma Carta<br>'
+        }
+        SortearCarta();
+    }
+
+    function SortearCarta() {
+        
+        sorteioNaipe = (Math.random() * 3).toFixed();
+        sorteioValor = (Math.random() * 9).toFixed();
+
+        naipe = jsonCartas.naipeCarta[sorteioNaipe];
+        nomeCarta = jsonCartas.valorCarta[sorteioValor];
+
+        
+        var verifyCarta = `${nomeCarta}${naipe}`;
+        var cartaExiste = false;
+        if (!estorou && !passouVez) {
+            for(i = 1; i <= vetorCartasSorteadas.length - 1; i++){
+                if(verifyCarta == vetorCartasSorteadas[i] ){
+                    cartaExiste = true;
+                    break;
+                }
+            }
+            
+            if(!cartaExiste){
+                console.log(nomeCarta, naipe);
+                VerficacaoValores(jsonCartas.valorCarta[sorteioValor], 1);
+                divInfos.innerHTML += `(${valor} Pontos) ${nomeCarta} de ${naipe}<br>`;
+                VerificacaoEstorou(1);
+                vetorCartasSorteadas.push(verifyCarta);
+            }
+            else{
+                divInfos.innerHTML += `Carta Já Sorteada!`;
+            }
+
+        }
+    }
+
+    function PassarVez() {
+        naipe = '';
+        passouVez = true;
+
+        pedirOutra.disabled = true;
+        passarVez.disabled = true;
+
+        divBanca.innerHTML += 'BANCA:<br>'
+
+        if (estorou) {
+            valorBanca = 0;
+            divBanca.innerHTML = `<br> Banca venceu com ${valorBanca} pontos`
+        }
+        else if (!estorou) {
+            while (valorBanca < 7.5) {
+                SortearCarta();
+                VerficacaoValores(jsonCartas.valorCarta[sorteioValor], 0);
+                divBanca.innerHTML += `(${valorBanca} Pontos) ${nomeCarta} de ${naipe}<br>`;
+                VerificacaoEstorou(0);
+            }
+           
+        }
+    }
+
+    function VerficacaoValores(num, typeVerificacao) {
+        if (typeVerificacao == 1) {
+            if (num == 'Ás') {
+                valor += 1;
+            }
+            else if (Number(num) >= 2 && Number(num) <= 7) {
+                valor += Number(num);
+            }
+            else {
+                valor += 0.5
+            }
+        } else if(typeVerificacao == 0) {
+            if (num == 'Ás') {
+                valorBanca += 1;
+            }
+            else if (Number(num) >= 2 && Number(num) <= 7) {
+                valorBanca += Number(num);
+            }
+            else {
+                valorBanca += 0.5
+            }
+        }
+
+    }
+
+    function VerificacaoEstorou(type) {
+        if (type == 1) {
+            if (valor == 7.5) {
+                divInfos.innerHTML += 'SETE E MEIO!';
+                pedirOutra.disabled = true;
+                passarVez.disabled = true;
+                divBanca.innerHTML += '<br>BANCA ESTOROU!'
+            }
+            if (valor > 7.5) {
+                estorou = true;
+                pedirOutra.disabled = true;
+                passarVez.disabled = true;
+                divInfos.innerHTML += 'JOGADOR ESTOROU!'
+                PassarVez();
+            }
+        }
+        else if(type == 0) {
+            if (valorBanca == 7.5) {
+                divBanca.innerHTML += '<br>SETE E MEIO!';
+            }
+            else if (valorBanca > 7.5) {
+                divBanca.innerHTML += '<br>BANCA ESTOROU!'
+            }
+        }
+    }
+</script>

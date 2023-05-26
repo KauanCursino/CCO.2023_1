@@ -15,25 +15,14 @@
     <br>
     <input id="iptPesquisa">
     <button onclick="pesquisar()">Pesquisar</button>
-    <button onclick="mostrar()">Mostrar</button>
     <div id="divMsg"></div>
 </body>
 </html>
 <script>
     var busao = []
-    var pesquisa = 0
     function gravar(){
-        pesquisa = iptPesquisa.value
         busao.push(iptBusao.value)
         iptBusao.value = ''
-    }
-    function mostrar(){
-        divMsg.innerHTML = ''
-        for (var index = busao.length-1; index >= 0; index--) {
-            divMsg.innerHTML += `<br>${busao[index]}`
-            
-        }
-
     }
     function pesquisar(){
         var pesquisa = iptPesquisa.value
