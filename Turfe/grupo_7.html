@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turfe Amigo</title>
+  <script src="sweetalert2.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="sweetalert2.min.css">
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+</style>
+<style>
+  body {
+    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/1901_Derby.jpg/1200px-1901_Derby.jpg);
+    /* background: url(https://i.pinimg.com/originals/dc/18/a0/dc18a0b20f0b2854b8305feedd75845d.gif); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+  }
+
+  .flexCenter {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  #divInicio {
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+  }
+
+  .inicio {
+    border: 1px solid black;
+    width: 30%;
+    height: 150px;
+    border-radius: 10px;
+  }
+
+  .inicio button {
+    width: 40%;
+  }
+
+  #tela1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .inicio {
+    background-color: rgb(0, 0, 0, 0.7);
+    padding: 20px;
+    margin-top: 10%;
+  }
+
+  .button-54 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .button-54:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+  }
+
+  @media (min-width: 768px) {
+    .button-54 {
+      padding: 0.25em 0.75em;
+    }
+  }
+
+  input {
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-left: 2%;
+  }
+
+  .divPergBranca {
+    background-color: rgb(0, 0, 0, 0.7);
+    border: none;
+    width: 30%;
+    height: 150px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 17%;
+    margin-left: 33.8%;
+  }
+
+  #div_qtdCavalos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #div_qtdCavalos p {
+    margin-top: 3%;
+    margin-bottom: 10px;
+  }
+
+  #div_qtdCavalos input {
+    width: 100px;
+    height: 20px;
+  }
+
+  #div_qtdCavalos button {
+    margin-top: 3%;
+  }
+
+  #div_nomeCavalo p {
+    margin-top: 3%;
+    margin-bottom: 10px;
+    width: 70%;
+    margin-left: 17%;
+  }
+
+  #div_nomeCavalo input {
+    width: 100px;
+    height: 20px;
+  }
+
+  #div_nomeCavalo button {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30%;
+  }
+
+  #div_qtdVoltas {
+    margin-top: 18%;
+  }
+
+  .divQtdVoltas {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0.7);
+    border: none;
+    width: 30%;
+    height: 150px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .divQtdVoltas p {
+    margin-top: 3%;
+  }
+
+  .divQtdVoltas input {
+    margin-top: 3%;
+    width: 100px;
+    height: 20px;
+  }
+
+  .divQtdVoltas button {
+    margin-top: 6%;
+  }
+
+  #divJogar button {
+    margin-top: 25%;
+  }
+
+  #divVoltas {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #divVoltas button {
+    margin-top: 5%;
+  }
+
+  #div_msg {
+    margin-top: 5%;
+  }
+
+  .cardPodium {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .divTotalBranca {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10%;
+  }
+
+  .divBranca {
+    background-color: #f7f5f5;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 312px;
+    height: 50vh;
+    color: #000;
+    margin-left: 8%;
+  }
+
+  #div_msg {
+    background-color: rgb(0, 0, 0, 0.7);
+    border: none;
+    width: 30%;
+    padding: 20px;
+    border-radius: 10px 10px 0px 0px;
+    padding-bottom: 0;
+  }
+
+  #div_melhorTempo {
+    background-color: rgb(0, 0, 0, 0.7);
+    border: none;
+    width: 30%;
+    padding: 20px;
+    border-radius: 0px 0px 10px 10px;
+    padding-bottom: 0;
+  }
+  table, th, td{
+    border: solid 0.5px white;
+  }
+</style>
+
+<body>
+  <!-- Criar pag de iniciacao -->
+  <!-- Titulo / btn jogar -->
+  <div id="divInicio" style="display: flex;">
+    <div class="inicio">
+      <div class="flexCenter" id="tela1">
+        <h2>TURFE AMIGO<br> 2023</h2>
+      </div>
+      <div class="flexCenter">
+        <button class="button-54" onclick="ComecarJogo()">JOGAR</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="divInfos" style="display: none;">
+    <div class="divPergBranca">
+      <div class="flexCenter" id="div_qtdCavalos">
+        <p>Insira a quantidade de cavalos desejada para a corrida:</p>
+        <input type="number" min="0" max="6" id="ipt_qtdCavalos" />
+        <button class="button-54" onclick="cadastrarQtd()">cadastrar</button>
+      </div>
+      <div class="flexCenter" style="display: none;" id="div_nomeCavalo">
+        <p>Cadastre o nome dos cavalos (um
+          por um):</p>
+        <input type="text" id="ipt_nomeCavalo" />
+        <button class="button-54" onclick="CadastrarCavalo()">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+  <!-- Div nomes dos cavalos de acordo a quantidade de cavalos / btn cadastrar cavalo-->
+  <!--if vtcavlos lengt display block-->
+
+  <!--  Div quantidade de voltas btn DarLargada() -->
+  <div class="flexCenter" style="display: none; " id="div_qtdVoltas">
+    <div class="divQtdVoltas">
+      <p>Insira a quantidade de voltas desejada:</p>
+      <input type="number" id="ipt_qtdVoltas">
+      <button class="button-54" onclick="CadastrarVoltas()">Cadastrar</button>
+    </div>
+  </div>
+  <!-- Criar pagina de mostrar o jogo  -->
+  <!-- Title Corrida iniciada, tabela embaixo onde 1coluna nome 2 tempoVolta 3 tempoTotal -->
+  <!-- btn ProximaVolta() -->
+  <div id="divJogar" class="flexCenter" style="display: none;">
+    <button class="button-54" onclick="DarLargada()">Dar Largada</button>
+  </div>
+  <div class="flexCenter" id="divVoltas">
+    <button id="btn_proximaVolta" class="button-54" onclick="ProximaVolta()">Próxima Volta</button>
+    <div id="div_msg"></div>
+  </div>
+  <!-- Pag Podium -->
+  <div id="divPodium" style="display: none; justify-content: space-around;">
+
+    <div id="divPosicoes">
+      <div id="divTotal" class="divTotalBranca">
+
+        <div class="divBranca" style="display: flex; margin-left: 0%;">
+          <img src="./img/horse.png">
+          <h1>2º Lugar</h1>
+          <div id="divNomeCavalo2">Nome do Cavalo</div>
+          <div id="divTempo2">Tempo: </div>
+        </div>
+        <div class="divBranca" style="width: 400px; height: 60vh; background: url(./img/confetes\ gif.gif);">
+          <img src="./img/horse (1).png">
+          <h1>1º Lugar</h1>
+          <div id="divNomeCavalo1">Nome do Cavalo</div>
+          <div id="divTempo1">Tempo: </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+<script>
+  // const Swal = require('sweetalert2');
+
+
+  var ax_qtdCavalos = 0;
+  // var vt_cavalos = [];
+  // var vt_tempo = [];
+
+  var vt_tempoSoma = [];
+  var soma = Number(0);
+  var vt_nomeCavalos = [];
+  var ax_nomeCavalo = '';
+  // criação dos cavalos
+  var ax_qtdCavalo = 0;
+  function ComecarJogo() {
+    divInicio.style.display = 'none';
+    divInfos.style.display = 'flex';
+  }
+
+  function cadastrarQtd() {
+    ax_qtdCavalo = ipt_qtdCavalos.value;
+    if (ax_qtdCavalo == "" || isNaN(ax_qtdCavalo) || ax_qtdCavalo < 2 || ax_qtdCavalo > 6) {
+      // swal("Erro!", "Quantidade de cavalos deve ser entre 2 e 6!!", "error");
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro!!',
+        text: 'Quantidade de cavalos deve ser entre 2 e 6!!',
+      })
+      // alert("Quantidade de cavalos deve ser entre 2 e 6!!");
+    } else {
+      div_qtdCavalos.style.display = "none";
+      div_nomeCavalo.style.display = "block";
+    }
+  }
+
+  function CadastrarCavalo() {
+    if (ax_qtdCavalo != vt_nomeCavalos.length) {
+      ax_nomeCavalo = ipt_nomeCavalo.value;
+      if (ax_nomeCavalo != '') {
+        vt_nomeCavalos.push(ax_nomeCavalo);
+        ipt_nomeCavalo.value = '';
+        Swal.fire({
+          icon: 'success',
+          title: 'Cadastrado!!',
+          text: `Cavalo: ${ax_nomeCavalo} cadastrado com sucesso!`,
+        })
+        // alert(`Cavalo: ${ax_nomeCavalo} cadastrado com sucesso!`)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!!',
+          text: 'Nome do cavalo não pode ser vazio!',
+        })
+        // alert('Nome do cavalo não pode ser vazio!');
+      }
+
+    }
+    if (ax_qtdCavalo == vt_nomeCavalos.length) {
+      divInfos.style.display = 'none';
+      div_qtdVoltas.style.display = 'flex';
+    }
+  }
+
+  var ax_qtdVoltas = 0;
+
+  function CadastrarVoltas() {
+    ax_qtdVoltas = ipt_qtdVoltas.value
+    if (ax_qtdVoltas >= 1 && ax_qtdVoltas != '') {
+      div_qtdVoltas.style.display = 'none';
+      divJogar.style.display = 'flex';
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro!!',
+        text: 'A quantidade de voltas não pode ser vazia!',
+      })
+    }
+  }
+
+  function DarLargada() {
+    divJogar.style.display = 'none';
+    divVoltas.style.display = 'flex';
+    ProximaVolta()
+  }
+
+  var ax_volta = 0;
+  var ax_contadorDinamico = 0;
+  function ProximaVolta() {
+
+    primeiroVolta = 1000;
+    segundoVolta = 1100;
+    posiPrimeiroVolta = 0;
+    posiSegundoVolta = 0;
+    if (ax_volta <= ax_qtdVoltas) {
+      ax_qtdCavalos = ipt_qtdCavalos.value;
+
+      if (ax_contadorDinamico < ax_qtdCavalos) {
+        for (let i = 1; i <= ax_qtdCavalos; i++) {
+          vt_tempoSoma.push(0);
+          ax_contadorDinamico++
+        }
+
+      }
+
+
+      // criação de valores aeatórios para a corrida
+
+      div_msg.innerHTML += `<br><b>Volta ${ax_volta + 1}</b><br>`;
+
+      for (let c = 0; c <= vt_nomeCavalos.length - 1; c++) {
+
+        // tempo para cada cavalo
+
+        soma = Number((Math.random() * 2 + 7).toFixed(1));
+
+        vt_tempoSoma[c] += soma;
+
+
+        div_msg.innerHTML += `
+        <table id="tblTabelaCavalos">
+          <tr>
+            <th>Cavalo</th>
+            <th>Tempo da volta atual</th>
+            <th> Tempo total</th>
+          </tr>
+          <tr>
+            <td>${vt_nomeCavalos[c]}</td>
+            <td>${soma}</td>
+            <td>${vt_tempoSoma[c].toFixed(1)}</td>
+          </tr>
+        </table>`;
+      }
+      for (let p = 0; p < vt_tempoSoma.length; p++) {
+        if (primeiroVolta > vt_tempoSoma[p]) {
+          primeiroVolta = vt_tempoSoma[p]
+        }
+      }
+
+      posiPrimeiroVolta = vt_tempoSoma.indexOf(primeiroVolta);
+
+      for (let s = 0; s < vt_tempoSoma.length; s++) {
+        if (s != posiPrimeiroVolta) {
+          if (segundoVolta > vt_tempoSoma[s]) {
+            segundoVolta = vt_tempoSoma[s]
+          }
+        }
+      }
+
+      posiSegundoVolta = vt_tempoSoma.indexOf(segundoVolta)
+
+      div_msg.innerHTML += `
+      <br>
+      1º nessa volta: ${vt_nomeCavalos[posiPrimeiroVolta]} <br>
+      2º nessa volta: ${vt_nomeCavalos[posiSegundoVolta]} <br>
+      Diferença do 1º para o 2º: ${(segundoVolta - primeiroVolta).toFixed(1)}
+      <br><br>`;
+
+      ax_volta++
+
+      if (ax_volta >= ax_qtdVoltas) {
+        btn_proximaVolta.innerHTML = 'Ir ao podium'
+      }
+
+      for (let i = 0; i < vt_tempoSoma.length; i++) {
+        let primeiro = i;
+        for (let j = i + 1; j < vt_tempoSoma.length; j++) {
+          if (vt_tempoSoma[j] < vt_tempoSoma[primeiro]) {
+            primeiro = j;
+          }
+        }
+        if (primeiro != i) {
+          let atual = vt_tempoSoma[i];
+          let atualNome = vt_nomeCavalos[i];
+          vt_tempoSoma[i] = vt_tempoSoma[primeiro];
+          vt_tempoSoma[primeiro] = atual;
+          vt_nomeCavalos[i] = vt_nomeCavalos[primeiro];
+          vt_nomeCavalos[primeiro] = atualNome;
+          // div_melhorTempo.innerHTML = `Primeiro Cavalo: ${vt_nomeCavalos[0]} Com um tempo de ${(vt_tempoSoma[0]).toFixed(1)}`;
+        }
+      }
+
+      if (ax_volta > ax_qtdVoltas) {
+        divVoltas.style.display = 'none';
+        divPodium.style.display = 'flex';
+
+        if (ax_qtdCavalos > 2) {
+          divTotal.innerHTML += `<div class="divBranca">       
+          <img src="./img/horse (2).png">
+          <h1>3º Lugar</h1>
+          <div id="divNomeCavalo3">Nome do Cavalo</div>
+          <div id="divTempo3">Tempo: </div>
+        </div>`
+        }
+
+      }
+      divNomeCavalo1.innerHTML = `${vt_nomeCavalos[0]}`;
+      divTempo1.innerHTML = `${vt_tempoSoma[0].toFixed(1)}`
+
+      divNomeCavalo2.innerHTML = `${vt_nomeCavalos[1]}`;
+      divTempo2.innerHTML = `${vt_tempoSoma[1].toFixed(1)}`
+
+      divNomeCavalo3.innerHTML = `${vt_nomeCavalos[2]}`;
+      divTempo3.innerHTML = `${vt_tempoSoma[2].toFixed(1)}`
+    }
+
+
+  }
+
+</script>
+
+</html>
