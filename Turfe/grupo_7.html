@@ -308,6 +308,7 @@
   </div>
   <div class="flexCenter" id="divVoltas">
     <button id="btn_proximaVolta" class="button-54" onclick="ProximaVolta()">Próxima Volta</button>
+    <button id="btn_irAoPodio" style="display: none;" class="button-54" onclick="IrAoPodio()">Ir Ao Pódio</button>
     <div id="div_msg"></div>
   </div>
   <!-- Pag Podium -->
@@ -353,7 +354,7 @@
   }
 
   function cadastrarQtd() {
-    ax_qtdCavalo = ipt_qtdCavalos.value;
+    ax_qtdCavalo = Number(ipt_qtdCavalos.value);
     if (ax_qtdCavalo == "" || isNaN(ax_qtdCavalo) || ax_qtdCavalo < 2 || ax_qtdCavalo > 6) {
       // swal("Erro!", "Quantidade de cavalos deve ser entre 2 e 6!!", "error");
       Swal.fire({
@@ -417,6 +418,12 @@
     divVoltas.style.display = 'flex';
     ProximaVolta()
   }
+
+  function IrAoPodio(){
+    divPodium.style.display = 'flex';
+    divVoltas.style.display = 'none';
+  }
+
 
   var ax_volta = 0;
   var ax_contadorDinamico = 0;
@@ -493,7 +500,8 @@
       ax_volta++
 
       if (ax_volta >= ax_qtdVoltas) {
-        btn_proximaVolta.innerHTML = 'Ir ao podium'
+        btn_proximaVolta.style.display = 'none';
+        btn_irAoPodio.style.display = 'block';
       }
 
       for (let i = 0; i < vt_tempoSoma.length; i++) {
@@ -517,25 +525,24 @@
       if (ax_volta > ax_qtdVoltas) {
         divVoltas.style.display = 'none';
         divPodium.style.display = 'flex';
-
-        if (ax_qtdCavalos > 2) {
+        if (vt_nomeCavalos.length >= 3) {
           divTotal.innerHTML += `<div class="divBranca">       
           <img src="./img/horse (2).png">
           <h1>3º Lugar</h1>
           <div id="divNomeCavalo3">Nome do Cavalo</div>
           <div id="divTempo3">Tempo: </div>
         </div>`
+        divNomeCavalo1.innerHTML = `${vt_nomeCavalos[0]}`;
+        divTempo1.innerHTML = `${vt_tempoSoma[0].toFixed(1)}`
+    
+        divNomeCavalo2.innerHTML = `${vt_nomeCavalos[1]}`;
+        divTempo2.innerHTML = `${vt_tempoSoma[1].toFixed(1)}`
+    
+        divNomeCavalo3.innerHTML = `${vt_nomeCavalos[2]}`;
+        divTempo3.innerHTML = `${vt_tempoSoma[2].toFixed(1)}`
         }
 
       }
-      divNomeCavalo1.innerHTML = `${vt_nomeCavalos[0]}`;
-      divTempo1.innerHTML = `${vt_tempoSoma[0].toFixed(1)}`
-
-      divNomeCavalo2.innerHTML = `${vt_nomeCavalos[1]}`;
-      divTempo2.innerHTML = `${vt_tempoSoma[1].toFixed(1)}`
-
-      divNomeCavalo3.innerHTML = `${vt_nomeCavalos[2]}`;
-      divTempo3.innerHTML = `${vt_tempoSoma[2].toFixed(1)}`
     }
 
 
