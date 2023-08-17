@@ -11,9 +11,9 @@ public class json {
 
         Integer[] numerosInteiros;
 
-        Integer [] numerosInteiros2 = new Integer[5];
-        Integer[] numerosInteiros3 = {1, 2, 3, 4, 5};
-        String[] nomes = new String[5];
+          Integer [] numerosInteiros2 = new Integer[5];
+           Integer[] numerosInteiros3 = {1, 2, 3, 4, 5};
+         String[] nomes = new String[5];
         Object[] objetos = new Object[5];
 
 
