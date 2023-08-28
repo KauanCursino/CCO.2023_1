@@ -20,9 +20,9 @@ public class desafioNumeros {
             if (sair == 0){
                 pararPergunta = true;
                 for (int i = 0; i < numeros.size(); i++) {
-                    if (numeros[i] % 2 == 0){
+                    if (numeros.get(i) % 2 == 0){
                         List pares = new ArrayList();
-                        System.out.println("Números pares %d", numeros[i]);
+
                     }
                 }
             }
