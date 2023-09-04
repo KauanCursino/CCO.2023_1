@@ -2,9 +2,34 @@ package school.sptech;
 
 public class cofrinho {
 
-    String proposito;
-    Boolean cofrinhoQuebrado = false;
-    Double saldo = 0.0;
+
+    /*
+    * modificadores de acesso:
+    *
+    * public
+    * private
+    * protected
+    * default
+    *
+    * */
+
+    private String proposito;
+    private Boolean cofrinhoQuebrado = false;
+    private Double saldo = 0.0;
+
+    public cofrinho(){
+        this.valor = 0.0;
+        quebrado = false;
+    }
+
+
+    public Strign getProposito(){
+        return proposito
+    };
+
+    public void setProposito(String proposito) {
+        this.proposito = proposito;
+    }
 
     void depositar(Double valorDepositado){
         if (cofrinhoQuebrado == false){
