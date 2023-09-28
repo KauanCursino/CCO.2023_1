@@ -14,4 +14,8 @@ public class Estudante {
         this. statusMatricula = statusMatricula;
 
     }
+
+    public void aplicarDesconto(){
+
+    }
 }
