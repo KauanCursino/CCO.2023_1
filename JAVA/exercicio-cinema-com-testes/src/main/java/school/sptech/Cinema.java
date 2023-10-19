@@ -8,7 +8,7 @@ public class Cinema {
     private List<Sessao> sessoes = new ArrayList<>();
 
 
-    public Cinema() {
+    public Cinema()  {
         this.nome = nome;
     };
 
@@ -43,7 +43,6 @@ public class Cinema {
         for (Sessao sessao : sessoes){
             if (sessao.getFilme().equalsIgnoreCase(filme)){
                 sessoesPorNome.add(sessao);
-
             }
         }
         return sessoesPorNome;
