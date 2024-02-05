@@ -8,6 +8,7 @@ public class UsuarioApi {
   private Integer idade;
   private String tipo; // COMUM ou ADMIN
 
+
   public Long getId() {
     return id;
   }

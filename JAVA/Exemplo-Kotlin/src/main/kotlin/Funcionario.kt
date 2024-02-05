@@ -10,5 +10,5 @@ class Funcionario(
 ):Pessoa(nome,idade, casado, altura) {
 
 
-    
+
 }

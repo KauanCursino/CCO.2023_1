@@ -36,5 +36,62 @@ public class Main {
     // 8 - Menor idade da lista
     // 9 - Todos os usuários convertidos para UsuarioApi
     // 10 - Usuários admin convertidos para UsuarioApi
+
+    //1
+    for (UsuarioBanco usuario : usuarios) {
+        if (usuario.getAdmin() == true){
+          System.out.println(usuario);
+        }
+    }
+
+    //2
+      int somaIdadesExercicio2 = usuarios.stream()
+              .mapToInt(UsuarioBanco::getIdade)
+              .sum();
+      System.out.println("soma das idades: " + somaIdadesExercicio2);
+
+    //3
+      int somaIdadesExercicio3 = usuarios.stream()
+              .filter(UsuarioBanco::getAdmin)
+              .mapToInt(UsuarioBanco::getIdade)
+              .sum();
+      System.out.println("soma das idades dos ADM: " + somaIdadesExercicio3);
+
+    //4
+    Double somaIdadesExercicio4 = 0.0;
+    for (UsuarioBanco usuario : usuarios){
+      if (usuario.getAdmin() == true && usuario.getIdade() > 30){
+          somaIdadesExercicio4 += usuario.getIdade();
+      }
+    }
+      System.out.println("soma das idades dos ADM maiores que 30 anos: " + somaIdadesExercicio4);
+
+    //5
+    for (UsuarioBanco usuario : usuarios){
+        System.out.println(usuario.getPrimeiroNome() + " " + usuario.getUltimoNome());
+    }
+
+    //6
+    System.out.println("--------");
+    for (UsuarioBanco usuario : usuarios){
+        if (usuario.getIdade() > 25){
+            System.out.println( usuario.getPrimeiroNome() + " " + usuario.getUltimoNome());
+        }
+    }
+
+    //7
+      Integer maiorIdade =  usuarios.stream()
+              .mapToInt(UsuarioBanco::getIdade)
+              .max().getAsInt();
+      System.out.println("Maior idade da lista: " + maiorIdade);
+
+    //8
+      Integer menorIdade = usuarios.stream()
+              .mapToInt(UsuarioBanco::getIdade)
+              .min().getAsInt();
+      System.out.println("Menor idade da lista: " + menorIdade);
+
+
   }
+
 }

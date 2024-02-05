@@ -78,4 +78,17 @@ public class UsuarioBanco {
   public void setAdmin(Boolean admin) {
     this.admin = admin;
   }
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("---------").append('\n');
+    sb.append("id:").append(id).append('\n');
+    sb.append("primeiroNome:").append(primeiroNome).append('\n');
+    sb.append("ultimoNome:").append(ultimoNome).append('\n');
+    sb.append("email:").append(email).append('\n');
+    sb.append("senha:").append(senha).append('\n');
+    sb.append("idade:").append(idade);
+    sb.append("admin:").append(admin);
+    return sb.toString();
+  }
 }
